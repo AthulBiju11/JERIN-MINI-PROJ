@@ -1,5 +1,7 @@
 import { React, useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import Styles from "../../styles/style.js";
+
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -13,9 +15,14 @@ const Login = () => {
         </h2>
       </div>
 
+        {/* the outer box container */}
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10 ">
-          <form className="space-y-6 ">
+          <form className="space-y-6 "> 
+          {/* the outer box container */}
+
+
+            {/* email address textfield */}
             <div>
               <label
                 htmlFor="email"
@@ -35,6 +42,10 @@ const Login = () => {
                 />
               </div>
             </div>
+                  {/* email address textfield */}
+
+
+                   {/* password text field */}
             <div>
               <label
                 htmlFor="password"
@@ -65,13 +76,40 @@ const Login = () => {
                     size={25}
                     onClick={() => setVisible(true)}
 
-              
-
-                    
                   />
                 )}
               </div>
             </div>
+                  {/* password text field */}
+
+
+                  {/* Remember me with checkbox*/}
+            <div className={`${Styles.normalFlex} justify-between`}>
+              <div className={`${Styles.normalFlex} h-1`}>
+                <input type="checkbox" name="remember-me" id="remember-me"
+                className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-grey-300 rounded"
+                />
+                <label htmlFor="remember-me"
+                className="ml-2  text-sm text-grey-900">
+                  Remember me
+                </label>
+              </div>
+              {/* Remember me */}
+
+
+                {/* forget password  */}
+              <div className="text-sm">
+                <a href="forgot-password"
+                className="float-right font-medium text-blue-600 hover:text-blue-500">
+                  Forgot your password?
+                </a>
+              </div>
+              {/* forget password  */}
+
+
+            </div> {/*end of remember me */}
+
+
           </form>
         </div>
       </div>

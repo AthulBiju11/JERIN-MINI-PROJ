@@ -1,4 +1,4 @@
-const styles = {
+const Styles = {
     custom_container: "w-11/12 hidden sm:block",
     heading: 'text-[27px] text-center md:text-start font-[600] font-Roboto pb-[20px]',
     section:'w-11/12 mx-auto',
@@ -15,4 +15,4 @@ const styles = {
     noramlFlex:"flex items-center"
   };
   
-  export default styles; 
+ export default Styles;
