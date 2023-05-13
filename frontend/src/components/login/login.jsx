@@ -1,7 +1,7 @@
 import { React, useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import Styles from "../../styles/style.js";
-
+import {Link} from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -15,13 +15,11 @@ const Login = () => {
         </h2>
       </div>
 
-        {/* the outer box container */}
+      {/* the outer box container */}
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10 ">
-          <form className="space-y-6 "> 
-          {/* the outer box container */}
-
-
+          <form className="space-y-6 ">
+            {/* the outer box container */}
             {/* email address textfield */}
             <div>
               <label
@@ -42,10 +40,8 @@ const Login = () => {
                 />
               </div>
             </div>
-                  {/* email address textfield */}
-
-
-                   {/* password text field */}
+            {/* email address textfield */}
+            {/* password text field */}
             <div>
               <label
                 htmlFor="password"
@@ -55,7 +51,7 @@ const Login = () => {
               </label>
               <div className="mt-1 relative">
                 <input
-                  type= {visible ? "text" : "password"}
+                  type={visible ? "text" : "password"}
                   name="password"
                   autoComplete="current-password"
                   required
@@ -75,41 +71,66 @@ const Login = () => {
                     className="absolute right-2 top-2 cursor-pointer"
                     size={25}
                     onClick={() => setVisible(true)}
-
                   />
                 )}
               </div>
             </div>
-                  {/* password text field */}
-
-
-                  {/* Remember me with checkbox*/}
+            {/* password text field */}
+            {/* Remember me with checkbox*/}
             <div className={`${Styles.normalFlex} justify-between`}>
               <div className={`${Styles.normalFlex} h-1`}>
-                <input type="checkbox" name="remember-me" id="remember-me"
-                className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-grey-300 rounded"
+                <input
+                  type="checkbox"
+                  name="remember-me"
+                  id="remember-me"
+                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-grey-300 rounded"
                 />
-                <label htmlFor="remember-me"
-                className="ml-2  text-sm text-grey-900">
+                <label
+                  htmlFor="remember-me"
+                  className="ml-2  text-sm text-grey-900"
+                >
                   Remember me
                 </label>
               </div>
               {/* Remember me */}
 
-
-                {/* forget password  */}
-              <div className="text-sm">
-                <a href="forgot-password"
-                className="float-right font-medium text-blue-600 hover:text-blue-500">
+              {/* forget password  */}
+              <div className="text-sm mb-9">
+                <a
+                  href="forgot-password"
+                  className="float-right font-medium text-blue-600 hover:text-blue-500"
+                >
                   Forgot your password?
                 </a>
               </div>
               {/* forget password  */}
+            </div>{" "}
+            {/*end of remember me */}
 
+              {/*submit button */}
+            <div>
+              <button
+                type="submit"
+                className="group relative w-full h-[40px] justify-center py-2 px-4 border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 "
+              >
+                  Submit
+              </button>
+            </div>
+                  {/*submit button */}
 
-            </div> {/*end of remember me */}
+                  {/*signup button */}
+            <div className={`${Styles.normalFlex} w-full flex justify-between`}>
+                  <h4 className="text-sm">Not have any account?</h4>
+                  <Link to="/sign up" className="text-blue-600 hover:text-blue-500 text-sm font-semibold">
+                    <p className="hover:underline">
+                    Sign up
+                    </p>
+                  </Link>
+              
+              </div>   
+                  {/*signup button */}
 
-
+                  
           </form>
         </div>
       </div>
