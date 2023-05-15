@@ -98,7 +98,7 @@ const Header = () => {
       </div>
     </div>
           {/* sub header */}
-      <div className={`${active == true? "shadow-sm fixed top-0 left-0 z-10" : null } transition hidden 800px:flex items-center justify-between w-full bg-[#682A85] h-[70px]`}>
+      <div className={`${active === true? "shadow-sm fixed top-0 left-0 z-10" : null } transition hidden 800px:flex items-center justify-between w-full bg-[#682A85] h-[70px]`}>
           <div className={`${Styles.section} relative ${Styles.noramlFlex} justify-between`}>
             <div>
               {/* categories dropdown */}
@@ -117,12 +117,17 @@ const Header = () => {
                     setDropDown= {setDropDown}/>
                   ):null
                 }
+
+
+
               </div>
               {/* categories */}
           </div>
         </div>
     </div>
-    {/* sub header */}
+      {/* sub header */}
+
+
     </>
   );
 };
