@@ -2,12 +2,17 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../assets/mechkart logo.svg";
 import Styles from "../../styles/style";
-import {productData} from "../../static/data";
+import {categoriesData,productData} from "../../static/data";
 import { AiOutlineSearch } from "react-icons/ai";
+import {IoIosArrowForward,IoIosArrowDown} from "react-icons/io"; 
+import {BiMenuAltLeft} from "react-icons/bi";
+import DropDown from "./DropDown";
 
 const Header = () => {
   const [ searchTerm, setSearchTerm ]= useState("");
   const [ searchData, setSearchData ] = useState(null);
+  const [active,setActive] = useState(false);
+  const [dropDown,setDropDown] = useState(false);
   
   
   const handleSearchChange = (e) => {
@@ -21,9 +26,22 @@ const Header = () => {
      setSearchData(filteredProducts);
   };
 
+  window.addEventListener("scroll",() => {
+    if(window.screenY >70){
+      setActive(true);
+    }else{
+      setActive(false);
+    }
+    })
+
+  
+
   return (
+    <>
     <div className={`${Styles.section}`}>
-      <div className="hidden 800px:mx-[-30px] 800px:my-[20px] 800px:flex item-center">
+      <div className="hidden 800px:mx-[-30px] 800px:my-[20px] 800px:flex justify-between">
+
+      
 
         {/* logo header */}
         <div className="w-[50px] h-[50px]">
@@ -34,7 +52,7 @@ const Header = () => {
         {/* logo header */}
 
         {/* search box */}
-        <div className="w-[30%] mx-[30px] relative">
+        <div className="w-[30%] mr-[750px] relative">
           <input
             type="text"
             placeholder="Search Products.."
@@ -65,13 +83,47 @@ const Header = () => {
                  </div>
                  ):null
           }
-
         </div> 
+        {/* Search box */}
         
-
-
+        {/* Login button */}
+        <div className="w-[150px] bg-[#682A85] h-[50px] my-[-5px] flex items-center justify-center rounded-xl cursor-pointer">
+          <Link to="/seller">
+            <h1 className="text-[#fff] flex items-center">
+              Login <IoIosArrowForward className="ml-1 mt-0.5"/>
+            </h1>
+          </Link>
+        </div>
+        {/* Login button */}
       </div>
     </div>
+          {/* sub header */}
+      <div className={`${active == true? "shadow-sm fixed top-0 left-0 z-10" : null } transition hidden 800px:flex items-center justify-between w-full bg-[#682A85] h-[70px]`}>
+          <div className={`${Styles.section} relative ${Styles.noramlFlex} justify-between`}>
+            <div>
+              {/* categories dropdown */}
+              <div className="relative h-[60px] mt-[10px] w-[270px] hidden 1000px:block">
+                <BiMenuAltLeft size={30} className="absolute top-3.5 left-2"/>
+                <button className="h-[100%] w-full flex justify-between items-center pl-[50px] bg-[#fff] font-sans text-lg font-[400] select-none rounded-t-md">
+                    All Categories
+                </button>
+                <IoIosArrowDown size={20} className="absolute right-2 top-[21px] cursor-pointer"
+                onClick={() => setDropDown(!dropDown)}/> 
+                {/* dropdown logic */}
+                {
+                  dropDown ? (
+                    <DropDown 
+                    categoriesData = {categoriesData}
+                    setDropDown= {setDropDown}/>
+                  ):null
+                }
+              </div>
+              {/* categories */}
+          </div>
+        </div>
+    </div>
+    {/* sub header */}
+    </>
   );
 };
 
