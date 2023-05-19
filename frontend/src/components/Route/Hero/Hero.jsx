@@ -26,7 +26,7 @@ const Hero = () => {
         {/* Text conetent 2 */}
         </div>
         <div className={`${Styles.section} flex float-left w-[90%] 800px:w-[60%]`}>
-        <h1 className={`mx-[200px] mt-[20px] text-[35px] 800px:text-[40px] text-[#000] font-[500] capitalize`}>
+        <h1 className={`mx-[200px] mt-[20px] text-[35px] 800px:text-[40px] text-[#000] font-[500] font-JosefinSans capitalize`}>
           New Equipments Available at 50% off !
         </h1>
         </div>
