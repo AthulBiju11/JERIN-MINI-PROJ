@@ -85,7 +85,7 @@ const Header = ({ activeHeading }) => {
           {/* Search box */}
 
           {/* Login button */}
-          <div className="w-[110px] bg-[#682A85] h-[47px] my-[-5px] flex items-center justify-center rounded-[5px] cursor-pointer">
+          <div className="w-[110px] bg-[#682A85] hover:bg-[#983ec2] h-[47px] my-[-5px] flex items-center justify-center rounded-[5px] cursor-pointer">
             <Link to="/login">
               <h1 className="ml-4 text-[#fff] flex items-center">
                 Login <IoIosArrowForward className="mr-2 mt-0.5" />
