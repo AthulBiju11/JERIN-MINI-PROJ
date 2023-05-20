@@ -5,9 +5,9 @@ import fifty from "../../../assets/Group 130.svg";
 import eq1 from "../../../assets/eq-1.svg";
 import { Link } from "react-router-dom";
 
-const Hero = () => {
+const Hero2 = () => {
   return (
-    <div className="relative top-0 bg-[#FCF5FE] w-full h-[500px]">
+    <div className="relative top-0 bg-[#FCF5FE] w-full h-[500px] mt-[90px]">
       <img
         src={roundele}
         alt=""
@@ -73,4 +73,4 @@ const Hero = () => {
   );
 };
 
-export default Hero;
+export default Hero2;

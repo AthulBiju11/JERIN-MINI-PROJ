@@ -28,15 +28,7 @@ const FeaturedProducts = () => {
 
 
 
-{/* Heading */}
-<div className={`${Styles.section}`}>
-            <div className={`${Styles.heading} mt-[500px] flex justify-center`}>
-                <h1>
-                    Featured Products
-                </h1>
-            </div>
-        </div>
-        {/* Heading */}
+
     </div>
   )
 }
