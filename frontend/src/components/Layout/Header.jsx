@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import logo from "../../assets/mechkart logo.svg";
+import logo from "../../assets/mechkartlogo.svg";
 import Styles from "../../styles/style";
 import { categoriesData, productData } from "../../static/data";
 import { AiOutlineSearch, AiOutlineHeart,AiOutlineShoppingCart} from "react-icons/ai";

@@ -1,9 +1,9 @@
 import React from "react";
 
-import { Col, Container, Row } from "reactstrap";
+import { Col, div, Row } from "reactstrap";
 import { Link } from "react-router-dom";
 
-import mech from "../../../assets/mechkart logo.svg";
+import mech from "./mechkart.svg";
 import "./Footer.css";
 
 const fut__links = [
@@ -68,11 +68,9 @@ const fut__links3 = [
 const Footer_M = () => {
   return (
     <>
-      <section className="p-0">
+      <section className="flex p-0 mt-10">
         <footer className="footer">
-          <Container className="cont__footer">
-            <Row>
-              <Col lg="5">
+          <div className="cont__footer flex space-x-10 flex-wrap">
                 <div className="logo__footer">
                   <img src={mech} alt="" />
                   <div className="footer__input">
@@ -85,20 +83,19 @@ const Footer_M = () => {
                       Sign Up
                     </button>
                   </div>
-                </div>
-
-                <div className="contact__links d-flex align-items-left gap-1 flex-column">
-                  <span className="d-flex align-items-center mt-3 justify-between">
+                  <div className="contact__links flex items-left gap-1 flex-col">
+                  <span className="flex items-center mt-3 justify-between">
                     Contact info
                   </span>
                   <span>
                     17 Princess Road, London, Greater London NW1 8JR, UK
                   </span>
+                  </div>
                 </div>
-              </Col>
-
-              <Col lg="3">
-                <h5 className="footer__link-title">Categories</h5>
+              <div className="flex__box flex space-x-9 flex-wrap">
+             
+              <div className="">
+                <h3 className="font-bold fw-[700] text-xl mb-5">Categories</h3>
 
                 <ul className="footer__quick-link">
                   {fut__links.map((item, index) => (
@@ -107,10 +104,10 @@ const Footer_M = () => {
                     </li>
                   ))}
                 </ul>
-              </Col>
+              </div>
 
-              <Col lg="2" className="footer__link-main">
-                <h5 className="footer__link-title">Customer Care</h5>
+              <div  className="">
+                <h5 className="font-bold fw-[700] text-xl mb-5">Customer Care</h5>
 
                 <ul className="footer__quick-link">
                   {fut__links2.map((item, index) => (
@@ -119,9 +116,9 @@ const Footer_M = () => {
                     </li>
                   ))}
                 </ul>
-              </Col>
-              <Col lg="2">
-                <h5 className="footer__link-title">Pages</h5>
+              </div>
+              <div className="ml-2">
+                <h5 className="font-bold text-xl mb-5">Pages</h5>
                 <ul className="footer__quick-link">
                   {fut__links3.map((item, index) => (
                     <li key={index}>
@@ -129,19 +126,19 @@ const Footer_M = () => {
                     </li>
                   ))}
                 </ul>
-              </Col>
-            </Row>
-          </Container>
+              </div>
+              </div>
+          </div>
         </footer>
       </section>
-      <section className="p-0 align-items-center footer__bottom">
-        <Container>
+      <section className="p-0 items-center footer__bottom">
+        <div>
           <Row>
             <Col lg="3" className="text-center">
               <p className="copyright">©Webecy - All Rights Reserved</p>
             </Col>
           </Row>
-        </Container>
+        </div>
       </section>
     </>
   );
