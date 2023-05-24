@@ -1,16 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import eq1 from "../../assets/eq-1.svg";
 import { Link } from "react-router-dom";
+import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 
 const TrendCard = () => {
+  const [click, setClick] = useState(false);
   return (
     <div className="group w-[282px] flex-column sm:shadow-xl bg-[#fff] m-[10px] ">
-      <div className="m-[10px] bg-[#FCF5FE] image p-[30px]">
+      <div className="m-[10px] bg-[#FCF5FE] image p-[40px]">
         <img
           src={eq1}
           alt=""
           className="w-[250px] group-hover:scale-[1.1] transition-all"
         ></img>
+        {click ? (
+          <AiFillHeart
+            size={22}
+            className="cursor-pointer flex float-right my-[-170px] mx-[-30px]"
+            onClick={() => setClick(!click)}
+            color={click ? "red" : "#333"}
+            title="Remove from wishlist"
+          />
+        ) : (
+          <AiOutlineHeart
+            size={22}
+            className="cursor-pointer flex float-right my-[-170px] mx-[-30px]"
+            onClick={() => setClick(!click)}
+            color={click ? "red" : "#333"}
+            title="Add to wishlist"
+          />
+        )}
       </div>
 
       <div className="h-[135px] bg-[#fff] group-hover:bg-[#682A85] p-[15px] ">

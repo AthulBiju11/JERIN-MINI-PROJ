@@ -42,7 +42,9 @@ const TrendProdCard2 = () => {
             <h4 className="font-medium font-JosefinSans text-[#151875]">
               Master Blade 2000
             </h4>
-            <span className=" font-JosefinSans text-[#151875]">Rs. 2000</span>
+            <span className="text-sm font-JosefinSans text-[#151875]">
+              Rs. 2000
+            </span>
           </div>
         </div>
         {/* 1 */}
@@ -56,7 +58,9 @@ const TrendProdCard2 = () => {
             <h4 className="font-medium font-JosefinSans text-[#151875]">
               Master Blade 2000
             </h4>
-            <span className=" font-JosefinSans text-[#151875]">Rs. 2000</span>
+            <span className="text-sm font-JosefinSans text-[#151875]">
+              Rs. 2000
+            </span>
           </div>
         </div>
         {/* 2 */}
@@ -70,7 +74,9 @@ const TrendProdCard2 = () => {
             <h4 className="font-medium font-JosefinSans text-[#151875]">
               Master Blade 2000
             </h4>
-            <span className=" font-JosefinSans text-[#151875]">Rs. 2000</span>
+            <span className="text-sm font-JosefinSans text-[#151875]">
+              Rs. 2000
+            </span>
           </div>
         </div>
         {/* 3 */}
