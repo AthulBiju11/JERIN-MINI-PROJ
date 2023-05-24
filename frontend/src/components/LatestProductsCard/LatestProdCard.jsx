@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import eq1 from "../../assets/eq-1.svg";
+import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 
 const LatestProdCard = () => {
+  const [click, setClick] = useState(false);
   return (
     <div className="group w-[360px] flex-column sm:shadow-xl bg-[#FCF5FE] m-[10px] ">
       <div className="image bg-[#FCF5FE] p-[30px]">
@@ -10,6 +12,23 @@ const LatestProdCard = () => {
           alt=""
           className="w-[250px] group-hover:scale-[1.1] transition-all"
         ></img>
+        {click ? (
+          <AiFillHeart
+            size={22}
+            className="cursor-pointer flex float-right my-[-200px] mx-[-10px]"
+            onClick={() => setClick(!click)}
+            color={click ? "red" : "#333"}
+            title="Remove from wishlist"
+          />
+        ) : (
+          <AiOutlineHeart
+            size={22}
+            className="cursor-pointer flex float-right my-[-200px] mx-[-10px]"
+            onClick={() => setClick(!click)}
+            color={click ? "red" : "#333"}
+            title="Add to wishlist"
+          />
+        )}
       </div>
 
       <div className="h-[55px] bg-[#fff] group-hover:bg-[#682A85] p-[15px] ">
