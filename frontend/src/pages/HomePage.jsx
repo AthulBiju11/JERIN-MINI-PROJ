@@ -16,6 +16,7 @@ const HomePage = () => {
       <LatestProducts />
       <Hero2 />
       <TrendingProd />
+      <Footer_M />
     </div>
   );
 };
