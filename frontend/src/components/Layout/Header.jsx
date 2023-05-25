@@ -1,24 +1,22 @@
 import React, { useState } from "react";
+
 import { Link } from "react-router-dom";
 import logo from "../../assets/mechkartlogo.svg";
 import Styles from "../../styles/style";
-import { categoriesData, productData } from "../../static/data";
+import { productData } from "../../static/data";
 import {
   AiOutlineSearch,
-  AiOutlineHeart,
-  AiOutlineShoppingCart,
 } from "react-icons/ai";
-import { CgProfile } from "react-icons/cg";
-import { IoIosArrowForward, IoIosArrowDown } from "react-icons/io";
-import { BiMenuAltLeft } from "react-icons/bi";
-import DropDown from "./DropDown";
-import Navbar from "./Navbar";
+
+import { IoIosArrowForward } from "react-icons/io";
+
+ import Navbar from "./Navbar";
 
 const Header = ({ activeHeading }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchData, setSearchData] = useState(null);
-  const [active, setActive] = useState(false);
-  const [dropDown, setDropDown] = useState(false);
+  // const [active, setActive] = useState(false);
+ 
 
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
@@ -31,13 +29,14 @@ const Header = ({ activeHeading }) => {
     setSearchData(filteredProducts);
   };
 
-  window.addEventListener("scroll", () => {
-    if (window.screenY > 70) {
-      setActive(true);
-    } else {
-      setActive(false);
-    }
-  });
+  // window.addEventListener("scroll", () => {
+  //   if (window.screenY > 70) {
+  //     setActive(true);
+  //   } else {
+  //     setActive(false);
+  //   }
+  // }
+  // );
 
   return (
     <>
@@ -99,86 +98,7 @@ const Header = ({ activeHeading }) => {
           {/* Login button */}
         </div>
       </div>
-      {/* sub header */}
-      <div
-        className={`${
-          active === true ? "shadow-sm fixed top-0 left-0 z-10" : null
-        } transition hidden 800px:flex justify-between w-full bg-[#682A85] h-[70px]`}
-      >
-        <div className={` ${Styles.noramlFlex} m-8`}>
-          {/* sub header (purple box) includes categories, home bestselling etc.. */}
-
-          {/* categories dropdown */}
-          <div onClick={() => setDropDown(!dropDown)}>
-            <div className="relative h-[60px] mt-[10px] w-[270px] hidden 1000px:block">
-              <BiMenuAltLeft size={30} className="absolute top-3.5 left-2" />
-              <button className="h-[100%] w-full flex justify-between items-center pl-[50px] bg-[#fff] font-sans text-lg font-[400] select-none rounded-t-md">
-                All Categories
-              </button>
-              <IoIosArrowDown
-                size={20}
-                className="absolute right-2 top-[21px] cursor-pointer"
-                onClick={() => setDropDown(!dropDown)}
-              />
-              {/* dropdown logic */}
-              {dropDown ? (
-                <DropDown
-                  categoriesData={categoriesData}
-                  setDropDown={setDropDown}
-                />
-              ) : null}
-            </div>
-          </div>
-          {/* categories dropdown*/}
-        </div>
-        <div className="flex m-8">
-          {/* Navbar ie,home bestselling etc....*/}
-          <div className={`${Styles.noramlFlex} mr-20`}>
-            <Navbar active={activeHeading} />
-          </div>
-          {/* navbar */}
-          {/* whishlist heart */}
-          <div className="flex items-center gap-4">
-            <div className={`${Styles.noramlFlex}`}>
-              <div className="relative cursor-pointer">
-                <AiOutlineHeart size={30} color="rgb(255 255 255 / 90%)" />
-                <span className="absolute right-0 top-0 rounded-full bg-[#ff0b0b] w-[13px] h-[13px] top right p-0 m-0 text-white font-mono text-[9px] leading-tight text-center">
-                  0
-                </span>
-              </div>
-            </div>
-
-            {/* whishlist heart */}
-
-            {/* Shopping cart */}
-            <div>
-              <div className={`${Styles.noramlFlex}`}>
-                <div className="relative cursor-pointer ">
-                  <AiOutlineShoppingCart
-                    size={30}
-                    color="rgb(255 255 255 / 90%)"
-                  />
-                  <span className="absolute left-5 top-0 rounded-full bg-[#ff0b0b] w-[13px] h-[13px] top right p-0 m-0 text-white font-mono text-[9px] leading-tight text-center">
-                    0
-                  </span>
-                </div>
-              </div>
-            </div>
-            {/* ShoppingCart */}
-
-            {/* profile icon */}
-            <div>
-              <div className={`${Styles.noramlFlex}`}>
-                <div className="relative cursor-pointer">
-                  <CgProfile size={30} color="rgb(255 255 255 / 90%)" />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        {/* profile icon */}
-      </div>
-      {/* sub header */}
+      <Navbar active ={1}/>
     </>
   );
 };

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Col, div, Row } from "reactstrap";
+import { Col, Row } from "reactstrap";
 import { Link } from "react-router-dom";
 
 import mech from "./mechkart.svg";
@@ -65,35 +65,30 @@ const fut__links3 = [
   },
 ];
 
-const Footer_M = () => {
+const Footer = () => {
   return (
     <>
       <section className="flex p-0 mt-10">
         <footer className="footer">
           <div className="cont__footer flex space-x-10 flex-wrap">
-                <div className="logo__footer">
-                  <img src={mech} alt="" />
-                  <div className="footer__input">
-                    <input
-                      type="text"
-                      placeholder="Enter Email Address"
-                      required
-                    />
-                    <button className="btn text-white" type="submit">
-                      Sign Up
-                    </button>
-                  </div>
-                  <div className="contact__links flex items-left gap-1 flex-col">
-                  <span className="flex items-center mt-3 justify-between">
-                    Contact info
-                  </span>
-                  <span>
-                    17 Princess Road, London, Greater London NW1 8JR, UK
-                  </span>
-                  </div>
-                </div>
-              <div className="flex__box flex space-x-9 flex-wrap">
-             
+            <div className="logo__footer">
+              <img src={mech} alt="" />
+              <div className="footer__input">
+                <input type="text" placeholder="Enter Email Address" required />
+                <button className="btn text-white" type="submit">
+                  Sign Up
+                </button>
+              </div>
+              <div className="contact__links flex items-left gap-1 flex-col">
+                <span className="flex items-center mt-3 justify-between">
+                  Contact info
+                </span>
+                <span>
+                  17 Princess Road, London, Greater London NW1 8JR, UK
+                </span>
+              </div>
+            </div>
+            <div className="flex__box flex space-x-9 flex-wrap">
               <div className="">
                 <h3 className="font-bold fw-[700] text-xl mb-5">Categories</h3>
 
@@ -106,8 +101,10 @@ const Footer_M = () => {
                 </ul>
               </div>
 
-              <div  className="">
-                <h5 className="font-bold fw-[700] text-xl mb-5">Customer Care</h5>
+              <div className="">
+                <h5 className="font-bold fw-[700] text-xl mb-5">
+                  Customer Care
+                </h5>
 
                 <ul className="footer__quick-link">
                   {fut__links2.map((item, index) => (
@@ -127,7 +124,7 @@ const Footer_M = () => {
                   ))}
                 </ul>
               </div>
-              </div>
+            </div>
           </div>
         </footer>
       </section>
@@ -144,4 +141,4 @@ const Footer_M = () => {
   );
 };
 
-export default Footer_M;
+export default Footer;

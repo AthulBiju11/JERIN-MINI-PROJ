@@ -5,7 +5,7 @@ import Hero2 from "../components/Route/Hero2/Hero2";
 import FeaturedProducts from "../components/Route/FeaturedProducts/FeaturedProducts.jsx";
 import LatestProducts from "../components/Route/LatestProducts/LatestProducts";
 import TrendingProd from "../components/Route/TrendCard/TrendingProd";
-import Footer_M from "../components/Layout/Footer/Footer_M";
+import Footer from "../components/Layout/Footer/Footer";
 
 const HomePage = () => {
   return (
@@ -16,7 +16,7 @@ const HomePage = () => {
       <LatestProducts />
       <Hero2 />
       <TrendingProd />
-      <Footer_M />
+      <Footer />
     </div>
   );
 };
