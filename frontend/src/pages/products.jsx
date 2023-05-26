@@ -6,21 +6,14 @@ import LatestProducts from "../components/Route/LatestProducts/LatestProducts";
 
 
 
-
+import Footer from "../components/Layout/Footer/Footer";
 import Navbar from "../components/Layout/Navbar";
 
 
-const Products = ({ activeHeading }) => {
-//   const [ setActive] = useState(false);
+const Products = () => {
+ 
  
 
-//   window.addEventListener("scroll", () => {
-//     if (window.screenY > 70) {
-//       setActive(true);
-//     } else {
-//       setActive(false);
-//     }
-//   });
   return (
     <>
      <Navbar active={2} />
@@ -31,6 +24,7 @@ const Products = ({ activeHeading }) => {
 
         <TrendingProd />
         <LatestProducts />
+        <Footer />
       </div>
     </>
   );

@@ -1,22 +1,15 @@
 import React, { useState } from "react";
-
 import { Link } from "react-router-dom";
 import logo from "../../assets/mechkartlogo.svg";
 import Styles from "../../styles/style";
 import { productData } from "../../static/data";
-import {
-  AiOutlineSearch,
-} from "react-icons/ai";
-
+import { AiOutlineSearch } from "react-icons/ai";
 import { IoIosArrowForward } from "react-icons/io";
+// import Navbar from "./Navbar";
 
- import Navbar from "./Navbar";
-
-const Header = ({ activeHeading }) => {
+const Header = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchData, setSearchData] = useState(null);
-  // const [active, setActive] = useState(false);
- 
 
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
@@ -29,18 +22,9 @@ const Header = ({ activeHeading }) => {
     setSearchData(filteredProducts);
   };
 
-  // window.addEventListener("scroll", () => {
-  //   if (window.screenY > 70) {
-  //     setActive(true);
-  //   } else {
-  //     setActive(false);
-  //   }
-  // }
-  // );
-
   return (
     <>
-      <div className={`${Styles.section}`}>
+      <div className={`${Styles.section} `}>
         <div className="hidden 800px:mx-[-30px] 800px:my-[20px] 800px:flex justify-between">
           {/* logo header */}
           <div className="w-[50px] h-[50px]">
@@ -98,7 +82,7 @@ const Header = ({ activeHeading }) => {
           {/* Login button */}
         </div>
       </div>
-      <Navbar active ={1}/>
+      
     </>
   );
 };
