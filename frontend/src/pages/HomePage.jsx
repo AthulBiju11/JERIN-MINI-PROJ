@@ -8,13 +8,14 @@ import TrendingProd from "../components/Route/TrendCard/TrendingProd";
 import Footer from "../components/Layout/Footer/Footer";
 import Navbar from "../components/Layout/Navbar";
 
+
 const HomePage = () => {
   return (
     <div>
       <Header  />
-      <div className="sticky top-[0] z-10">
+      
         <Navbar active={1} />
-      </div>
+      
       <Hero />
       <FeaturedProducts />
       <LatestProducts />

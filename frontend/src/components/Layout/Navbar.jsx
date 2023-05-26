@@ -19,9 +19,8 @@ const Navbar = ({ active }) => {
     <>
       {/* sub header */}
       <div
-        className={`sm:shadow-md mt-[-5px] transition hidden 800px:flex justify-between w-full bg-[#682A85] h-[70px] ${
-          active ? "sticky top-0 z-10" : ""
-        }`}
+        className="sm:shadow-md mt-[-5px] transition hidden 800px:flex justify-between w-full bg-[#682A85] h-[70px] 
+          sticky top-0 z-10"
       >
         <div className={` ${Styles.noramlFlex} m-8`}>
           {/* sub header (purple box) includes categories, home bestselling etc.. */}
