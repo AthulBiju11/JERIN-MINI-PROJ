@@ -8,22 +8,24 @@ import TrendingProd from "../components/Route/TrendCard/TrendingProd";
 import Footer from "../components/Layout/Footer/Footer";
 import Navbar from "../components/Layout/Navbar";
 
-
 const HomePage = () => {
   return (
-    <div>
-      <Header  />
-      
-        <Navbar active={1} />
-      
-      <Hero />
-      <FeaturedProducts />
-      <LatestProducts />
-      <Hero2 />
-      <TrendingProd />
+    <div className="flex flex-col min-h-screen">
+      <Header />
+      <Navbar active={1} />
+
+      <div className="lex flex-col min-h-screen">
+        <Hero />
+        <FeaturedProducts />
+        <LatestProducts />
+        <Hero2 />
+        <TrendingProd />
+      </div>
+
       <Footer />
     </div>
   );
 };
 
 export default HomePage;
+

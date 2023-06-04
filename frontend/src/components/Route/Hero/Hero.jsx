@@ -7,7 +7,8 @@ import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
-    <div className="relative top-0 bg-[#FCF5FE] w-full h-[500px]">
+    <div className=" bg-[#FCF5FE] w-full h-[500px]">
+      <div>
       <img
         src={roundele}
         alt=""
@@ -25,7 +26,7 @@ const Hero = () => {
         alt=""
         className="absolute w-[350px] float-left ml-[950px] mt-[120px]"
       />
-
+      </div>
       {/* Text Content starts */}
       <div
         className={`${Styles.section} flex float-left w-[90%] 800px:w-[50%]`}

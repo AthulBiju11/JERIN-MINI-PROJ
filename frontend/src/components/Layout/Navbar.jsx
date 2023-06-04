@@ -18,16 +18,13 @@ const Navbar = ({ active }) => {
   return (
     <>
       {/* sub header */}
-      <div
-        className="sm:shadow-md mt-[-5px] transition hidden 800px:flex justify-between w-full bg-[#682A85] h-[70px] 
-          sticky top-0 z-10"
-      >
+      <div className="sm:shadow-md mt-[-5px] transition hidden md:flex justify-between w-full bg-[#682A85] h-[70px] sticky top-0 z-10">
         <div className={` ${Styles.noramlFlex} m-8`}>
           {/* sub header (purple box) includes categories, home bestselling etc.. */}
 
           {/* categories dropdown */}
           <div onClick={() => setDropDown(!dropDown)}>
-            <div className="relative h-[60px] mt-[10px] w-[270px] hidden 1000px:block">
+            <div className="relative h-[60px] mt-[10px] w-[270px] hidden lg:block">
               <BiMenuAltLeft size={30} className="absolute top-3.5 left-2" />
               <button className="h-[100%] w-full flex justify-between items-center pl-[50px] bg-[#fff] font-sans text-lg font-[400] select-none rounded-t-md">
                 All Categories
@@ -51,17 +48,17 @@ const Navbar = ({ active }) => {
         <div className="flex m-8">
           {/* Navbar ie,home bestselling etc....*/}
           <div className={`${Styles.noramlFlex} mr-20`}>
-            <div className={`block 800px:${Styles.noramlFlex}`}>
+            <div className={`block lg:flex`}>
               {navItems &&
                 navItems.map((i, index) => (
-                  <div className="flex">
+                  <div className="flex" key={index}>
                     <Link
                       to={i.url}
                       className={`${
                         active === index + 1
-                          ? "underline && text-[#fefec9]"
-                          : "text-black 800px:text-[#fff]"
-                      } pb-[30px] 800px:pb-0 font-[500] px-5 cursor-pointer}`}
+                          ? "underline text-[#fefec9]"
+                          : "text-black lg:text-[#fff]"
+                      } pb-[30px] lg:pb-0 font-[500] px-5 cursor-pointer`}
                     >
                       {i.title}
                     </Link>
