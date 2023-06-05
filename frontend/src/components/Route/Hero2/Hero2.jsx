@@ -1,65 +1,56 @@
 import React from "react";
-import Styles from "../../../styles/style";
 
-import roundele2 from "../../../assets/roundele2.svg";
+import roundele from "../../../assets/round elemnet.svg";
+import fifty from "../../../assets/Group 130.svg";
 import eq1 from "../../../assets/eq-1.svg";
 import { Link } from "react-router-dom";
 
-const Hero2 = () => {
+const Hero = () => {
   return (
-    <div className="relative top-0 bg-[#FCF5FE] w-full h-[500px] mt-[90px]">
-      <img
-        src={roundele2}
-        alt=""
-        className=" relative w-[400px] float-left ml-[150px] mt-[55px]"
-      />
+    <div className="flex mt-11 bg-[#FCF5FE] w-full h-[500px]">
+      
 
+      {/* left side text ends */}
+
+      <div className=" w-[50%] h-[500px]">
+        <div className="ml-[30%] mt-[4%]">
+          <img
+        src={roundele}
+        alt=""
+        className=" absolute w-[30%]"
+      />
+    
+      <img
+        src={fifty}
+        alt=""
+        className=" absolute w-[90px] ml-[22%]"
+      />
       <img
         src={eq1}
         alt=""
-        className="absolute w-[350px] float-left ml-[150px] mt-[120px]"
+        className="absolute w-[25%] ml-[1%] mt-[5%]"
       />
 
-      {/* Text Content starts */}
-      <div
-        className={`${Styles.section} flex float-right w-[90%] 800px:w-[50%]`}
-      >
-        <h1
-          className={`mx-[52px] mt-[90px] text-[35px] 800px:text-[20px] text-[#FB2E86] font-[500] capitalize`}
-        >
+        </div>
+      </div>
+      <div className="pt-[5%] pr-[10%] w-[50%] h-[500px] ">
+        <p className={` text-[#FB2E86] text-[20px] font-[500]`}>
           Best Mechanical Equipment
-        </h1>
+        </p>
 
-        {/* Text conetent 2 */}
-      </div>
-      <div
-        className={`${Styles.section} flex float-right w-[90%] 800px:w-[60%]`}
-      >
-        <h1
-          className={`mx-[200px] mt-[20px] text-[35px] 800px:text-[40px] text-[#000] font-[500] font-JosefinSans capitalize`}
-        >
+        <p className="text-[2.5rem] text-[#000] font-[500] font-JosefinSans">
           New Equipments Available at 50% off !
-        </h1>
-      </div>
+        </p>
 
-      {/* Text content 3 */}
-      <div
-        className={`${Styles.section} flex float-right w-[90%] 800px:w-[60%]`}
-      >
-        <p className="mx-[200px] mt-[20px] text-[35px] leading-[1,2] 800px:text-[15px] text-[#8A8FB9] font-[200] capitalize">
+        <p className=" mt-2 text-[1.1rem]  text-[#8A8FB9] font-[200]">
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente
           quisquam voluptates dolore quasi odio earum facere autem. Eos
           perspiciatis magni ducimus tempora quo et
         </p>
-      </div>
-      {/* Text content end */}
 
-      <div
-        className={`${Styles.section} flex float-right w-[90%] 800px:w-[60%]`}
-      >
-        <div className="w-[150px] mx-[200px] mt-[40px] bg-[#FB2E86] h-[50px] my-[-5px] flex items-center justify-center rounded-[2px] cursor-pointer">
-          <Link to="/cart">
-            <h1 className="text-[#fff] flex items-center">Add To Cart</h1>
+        <div className="w-[150px] bg-[#FB2E86] mt-8 h-[50px] flex items-center justify-center rounded-[2px] cursor-pointer">
+          <Link to="/product">
+            <h1 className="text-[#fff] flex items-center">Shop now</h1>
           </Link>
         </div>
       </div>
@@ -67,4 +58,4 @@ const Hero2 = () => {
   );
 };
 
-export default Hero2;
+export default Hero;

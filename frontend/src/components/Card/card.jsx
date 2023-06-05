@@ -7,7 +7,7 @@ const Card = () => {
   const [click, setClick] = useState(false);
   return (
     <div className="group w-[282px] flex-column sm:shadow-xl bg-[#FCF5FE] m-[10px] ">
-      <div className="image bg-[#FCF5FE] p-[40px]">
+      <div className="flex bg-[#FCF5FE] p-[40px]">
         <img
           src={eq1}
           alt=""
@@ -17,7 +17,7 @@ const Card = () => {
         {click ? (
           <AiFillHeart
             size={22}
-            className="cursor-pointer flex float-right my-[-180px] mx-[-20px]"
+            className="cursor-pointer my-[-20px] mx-[-20px]"
             onClick={() => setClick(!click)}
             color={click ? "red" : "#333"}
             title="Remove from wishlist"
@@ -25,7 +25,7 @@ const Card = () => {
         ) : (
           <AiOutlineHeart
             size={22}
-            className="cursor-pointer flex float-right my-[-180px] mx-[-20px]"
+            className="cursor-pointer my-[-20px] mx-[-10px]"
             onClick={() => setClick(!click)}
             color={click ? "red" : "#333"}
             title="Add to wishlist"

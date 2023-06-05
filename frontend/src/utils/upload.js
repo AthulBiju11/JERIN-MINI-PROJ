@@ -7,7 +7,7 @@ const upload = async (file) => {
     data.append("file",file);
     data.append("upload_preset","MechKart");
     try{
-      const res = await axios.post("https://api.cloudinary.com/v1_1/dwsuanvjee.target.files[0]/image/upload",data);
+      const res = await axios.post("https://api.cloudinary.com/v1_1/dwsuanvje/image/upload",data);
       const {url} = res.data;
       return url;
     }catch(err){
