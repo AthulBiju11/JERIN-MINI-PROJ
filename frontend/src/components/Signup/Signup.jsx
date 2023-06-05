@@ -17,6 +17,7 @@ const [file, setFile] = useState(null);
 
   const [user,setUser] = useState({
     username : "",
+    fullname : "",
     email : "",
     password : "",
     img : "",
@@ -72,13 +73,35 @@ const [file, setFile] = useState(null);
                 htmlFor="name"
                 className="block text-sm font-medium text-grey-700"
               >
-                Full name
+                Username
               </label>
               <div className="mt-1">
                 <input
                   type="text"
                   name="username"
                   autoComplete="name"
+                  required
+                  
+                  onChange={handleChange}
+                  className="appearance-none block w-full px-3 py-2 border border-grey-300 rounded-md shadow-sm placeholder-grey-400 focus:outline-none focus:ring-[#] focus:border-[#682A85] sm:text-sm"
+                />
+              </div>
+            </div>
+            {/* email address textfield */}
+
+            {/* email address textfield */}
+            <div>
+              <label
+                htmlFor="text"
+                className="block text-sm font-medium text-grey-700"
+              >
+                Full name
+              </label>
+              <div className="mt-1">
+                <input
+                  type="text"
+                  name="fullname"
+                  
                   required
                   
                   onChange={handleChange}
@@ -174,7 +197,7 @@ const [file, setFile] = useState(null);
                     name="avatar"
                     id="file-input"
                     accept=".jpg,.jpeg,.png"
-                    onChange={e =>setFile(e.target.files[0])}
+                    onChange={handleFileInputChange}
                     className="sr-only"
                   />
                 </label>

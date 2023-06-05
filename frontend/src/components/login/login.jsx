@@ -1,12 +1,39 @@
 import { React, useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import Styles from "../../styles/style.js";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
+import newRequest from "../../utils/newRequest.js";
+import {toast} from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
+  // const [error, setError] = useState(null);
   const [password, setPassword] = useState("");
   const [visible, setVisible] = useState(false);
+  const navigate = useNavigate();
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await newRequest.post("/auth/login", { username, password });
+      localStorage.setItem("currentUser", JSON.stringify(res.data));
+      navigate("/");
+    } catch (err) {
+      toast.error(err.response.data, {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
+  };
+
   return (
     <div className="min h-screen bg-[#FCF5FE] flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
@@ -18,31 +45,28 @@ const Login = () => {
       {/* the outer box container */}
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10 ">
-          <form className="space-y-6 ">
-            
-
+          <form className="space-y-6 " onSubmit={handleSubmit}>
             {/* email address textfield */}
             <div>
               <label
                 htmlFor="email"
                 className="block text-sm font-medium text-grey-700"
               >
-                Email address
+                Username
               </label>
               <div className="mt-1">
                 <input
-                  type="email"
-                  name="email"
+                  type="text"
+                  name="username"
                   autoComplete="email"
                   required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  
+                  onChange={(e) => setUsername(e.target.value)}
                   className="appearance-none block w-full px-3 py-2 border border-grey-300 rounded-md shadow-sm placeholder-grey-400 focus:outline-none focus:ring-[#] focus:border-[#682A85] sm:text-sm"
                 />
               </div>
             </div>
             {/* email address textfield */}
-
             {/* password text field */}
             <div>
               <label
@@ -57,7 +81,7 @@ const Login = () => {
                   name="password"
                   autoComplete="current-password"
                   required
-                  value={password}
+                  
                   onChange={(e) => setPassword(e.target.value)}
                   className="appearance-none block w-full px-3 py-2 border border-grey-300 rounded-md shadow-sm placeholder-grey-400 focus:outline-none focus:ring-[#682A85] focus:border-[#682A85] sm:text-sm"
                 />
@@ -108,31 +132,27 @@ const Login = () => {
               {/* forget password  */}
             </div>{" "}
             {/*end of remember me */}
-
-              {/*submit button */}
+            {/*submit button */}
             <div>
               <button
                 type="submit"
                 className="group relative w-full h-[40px] justify-center py-2 px-4 border-transparent text-sm font-medium rounded-md text-white bg-[#682A85] hover:bg-[#983ec2] "
               >
-                  Submit
+                Submit
               </button>
             </div>
-                  {/*submit button */}
-
-                  {/*signup button */}
+            {/*submit button */}
+            {/*signup button */}
             <div className={`${Styles.normalFlex} w-full flex item-center`}>
-                  <h4 className="text-sm">Not have any account?</h4>
-                  <Link to="/signup" className="text-blue-600 hover:text-blue-500 text-sm font-semibold mx-2">
-                    <p className="hover:underline">
-                    Sign up
-                    </p>
-                  </Link>
-              
-              </div>   
-                  {/*signup button */}
-
-                  
+              <h4 className="text-sm">Not have any account?</h4>
+              <Link
+                to="/signup"
+                className="text-blue-600 hover:text-blue-500 text-sm font-semibold mx-2"
+              >
+                <p className="hover:underline">Sign up</p>
+              </Link>
+            </div>
+            {/*signup button */}
           </form>
         </div>
       </div>
