@@ -9,19 +9,19 @@ export const getCategories = async (req, res,next) => {
   }
 };
 
-// export const createCategories = async (req, res, next) => {
+export const createCategories = async (req, res, next) => {
   
-//     const newCategory = new Categories({
-//       title: "Illustration",
-//       desc: "Color you dreams",
-//       img: "https://images.pexels.com/photos/15032623/pexels-photo-15032623.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load",
-//       cat: "design",
-//     });
+    const newCategory = new Categories({
+      title: "Engineering & Construction",
+      
+      img: "https://res.cloudinary.com/dwsuanvje/image/upload/v1687021744/MechKart/Mechkart_Backend_images/pngwing.com_q05xt4.png",
+      cat: "ec",
+    });
 
-//     try{
-//         const savedCategory = await newCategory.save();
-//         res.status(201).send("Category has been added");
-//     }catch(err){
-//         next(err);
-//     }
-// };
+    try{
+        const savedCategory = await newCategory.save();
+        res.status(201).send("Category has been added");
+    }catch(err){
+        next(err);
+    }
+};
