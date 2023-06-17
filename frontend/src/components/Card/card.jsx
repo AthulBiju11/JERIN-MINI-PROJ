@@ -7,17 +7,22 @@ const Card = () => {
   const [click, setClick] = useState(false);
   return (
     <div className="group w-[282px] flex-column sm:shadow-xl bg-[#FCF5FE] m-[10px] ">
-      <div className="flex bg-[#FCF5FE] p-[40px]">
+      <div className=" bg-[#FCF5FE] p-[40px]">
         <img
           src={eq1}
           alt=""
           className="w-[250px] group-hover:scale-[1.1] transition-all"
         ></img>
 
-        {click ? (
+        
+      </div>
+      <div className="h-[135px] bg-[#fff] group-hover:bg-[#682A85] p-[15px] ">
+        <div className="">
+          <div className="flex justify-right">
+          {click ? (
           <AiFillHeart
             size={22}
-            className="cursor-pointer my-[-20px] mx-[-20px]"
+            className=""
             onClick={() => setClick(!click)}
             color={click ? "red" : "#333"}
             title="Remove from wishlist"
@@ -25,18 +30,16 @@ const Card = () => {
         ) : (
           <AiOutlineHeart
             size={22}
-            className="cursor-pointer my-[-20px] mx-[-10px]"
+            className=""
             onClick={() => setClick(!click)}
             color={click ? "red" : "#333"}
             title="Add to wishlist"
           />
         )}
-      </div>
-      <div className="h-[135px] bg-[#fff] group-hover:bg-[#682A85] p-[15px] ">
-        <div className="">
-          <h5 className="TITLE text-center text-[#FB2E86] group-hover:text-[#fff] backdrop:font-[600] font-Lato">
+          <h5 className="TITLE mx-[22%] text-[#FB2E86] group-hover:text-[#fff] backdrop:font-[600] font-Lato">
             Product Name
           </h5>
+          </div>
           <div className="cardbottom flex-column mt-3 text-center font-JosefinSans text-[#151875] group-hover:text-[#fff]">
             <h5>
               Rs 1000 <span> / per unit</span>

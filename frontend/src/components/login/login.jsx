@@ -102,6 +102,7 @@ const Login = () => {
               </div>
             </div>
             {/* password text field */}
+
             {/* Remember me with checkbox*/}
             <div className={`${Styles.normalFlex} justify-between`}>
               <div className={`${Styles.normalFlex} h-1`}>
@@ -143,7 +144,7 @@ const Login = () => {
             </div>
             {/*submit button */}
             {/*signup button */}
-            <div className={`${Styles.normalFlex} w-full flex item-center`}>
+            <div className={`${Styles.normalFlex} w-full flex `}>
               <h4 className="text-sm">Not have any account?</h4>
               <Link
                 to="/signup"

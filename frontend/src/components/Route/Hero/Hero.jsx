@@ -33,7 +33,7 @@ const Hero = () => {
       {/* left side text ends */}
 
       <div className=" w-[50%] h-[500px]">
-        <div className="ml-[20%] mt-[4%]">
+        <div className="pt-[5%] pl-[10%] ">
           <img
         src={roundele}
         alt=""

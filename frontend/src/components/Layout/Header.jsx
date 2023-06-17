@@ -35,7 +35,7 @@ const Header = () => {
           {/* logo header */}
 
           {/* search box */}
-          <div className="w-[30%] mr-[750px] relative">
+          <div className="w-[30%] mr-[750px] relative z-20">
             <input
               type="text"
               placeholder="Search Products.."
