@@ -611,11 +611,10 @@ export const footerSupportLinks = [
 
 export const productsData =[
   {
-    category:"pg",
+    cat:"pg",
     title:"Athul Generator",
     img:"https://res.cloudinary.com/dwsuanvje/image/upload/v1687029612/MechKart/Mechkart_Backend_images/products%20data/generator1_wnk0cd.png",
     price:"15000",
-    
 
   }
 

@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 const  {Schema} = mongoose;
 
-const categorySchema = new Schema({
+const productSchema = new Schema({
     title : {
         type : String,
         required : true,
@@ -13,9 +13,12 @@ const categorySchema = new Schema({
     },
     cat : {
         type : String,
+        
+    },
+    price : {
+        type : Number,
         required: true,
     },
-    
 });
 
-export default mongoose.model("categorycards",categorySchema);
+export default mongoose.model("products",productSchema)
