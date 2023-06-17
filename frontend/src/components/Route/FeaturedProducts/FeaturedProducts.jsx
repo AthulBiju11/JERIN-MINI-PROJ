@@ -1,8 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Styles from '../../../styles/style';
 import Card from '../../Card/card';
+import { ProductsContext } from '../../../context/productContext';
 
 const FeaturedProducts = () => {
+
+  const {data} = useContext(ProductsContext);
+
+  console.log(data);
+
   return (
     <div>
         {/* Heading */}
@@ -18,10 +24,12 @@ const FeaturedProducts = () => {
 
         {/* product card */}
 <div className='flex float-left w-[100%] justify-center'>
-<Card/>
-<Card/>
-<Card/>
-<Card/>
+{data && 
+  data.map((product,i) => {
+    return <Card product={product} key={i}/>
+  })
+}
+
 
 </div>
 {/* product card */}
