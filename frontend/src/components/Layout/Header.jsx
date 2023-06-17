@@ -7,6 +7,8 @@ import { AiOutlineSearch } from "react-icons/ai";
 import { IoIosArrowForward } from "react-icons/io";
 import newRequest from "../../utils/newRequest";
 import { useQuery } from "@tanstack/react-query";
+import { useContext } from "react";
+import { ProductsContext } from "../../context/productContext";
 
 const Header = () => {
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
@@ -18,13 +20,8 @@ const Header = () => {
 
   const searchRef = useRef(null);
 
-  const { isLoading, error, data, refetch } = useQuery({
-    queryKey: ["products"],
-    queryFn: () =>
-      newRequest.get(`/product`).then((res) => {
-        return res.data;
-      }),
-  });
+  const {data} = useContext(ProductsContext);
+  
 
   useEffect(() => {
     const handleClickOutside = (event) => {
