@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { navItems } from "../../static/data";
 import Styles from "../../styles/style";
@@ -11,9 +11,23 @@ import { CgProfile } from "react-icons/cg";
 import { IoIosArrowDown } from "react-icons/io";
 import { BiMenuAltLeft } from "react-icons/bi";
 import { categoriesData } from "../../static/data";
+import { useQuery } from "@tanstack/react-query";
+import newRequest from "../../utils/newRequest";
+
 
 const Navbar = ({ active }) => {
   const [dropDown, setDropDown] = useState(false);
+  
+
+  const { isLoading, error, data, refetch } = useQuery({
+    queryKey: ["categories"],
+    queryFn: () =>
+      newRequest.get(`/categories`).then((res) => {
+        return res.data;
+      }),
+  });
+
+  console.log(data);
 
   return (
     <>
@@ -37,7 +51,7 @@ const Navbar = ({ active }) => {
               {/* dropdown logic */}
               {dropDown ? (
                 <DropDown
-                  categoriesData={categoriesData}
+                  categoriesData={data}
                   setDropDown={setDropDown}
                 />
               ) : null}

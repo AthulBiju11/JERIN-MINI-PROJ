@@ -1,13 +1,18 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/mechkartlogo.svg";
 import Styles from "../../styles/style";
 import { productData } from "../../static/data";
 import { AiOutlineSearch } from "react-icons/ai";
 import { IoIosArrowForward } from "react-icons/io";
+import newRequest from "../../utils/newRequest";
 // import Navbar from "./Navbar";
 
 const Header = () => {
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+  const navigate = useNavigate();
+
   const [searchTerm, setSearchTerm] = useState("");
   const [searchData, setSearchData] = useState(null);
 
@@ -20,6 +25,16 @@ const Header = () => {
         product.name.toLowerCase().includes(e.target.value.toLowerCase())
       );
     setSearchData(filteredProducts);
+  };
+
+  const handleLogout = async () => {
+    try {
+      await newRequest.post("/auth/logout");
+      localStorage.setItem("currentUser", null);
+      navigate("/");
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -74,15 +89,18 @@ const Header = () => {
           {/* Login button */}
           <div className="w-[110px] bg-[#682A85] hover:bg-[#983ec2] h-[47px] my-[-5px] flex items-center justify-center rounded-[5px] cursor-pointer">
             <Link to="/login">
-              <h1 className="ml-4 text-[#fff] flex items-center">
-                Login <IoIosArrowForward className="mr-2 mt-0.5" />
-              </h1>
+              {currentUser ? (
+                <div className="text-[#fff] flex items-center" onClick={handleLogout}>Logout</div>
+              ) : (
+                <h1 className="ml-4 text-[#fff] flex items-center">
+                  Login <IoIosArrowForward className="mr-2 mt-0.5" />
+                </h1>
+              )}
             </Link>
           </div>
           {/* Login button */}
         </div>
       </div>
-      
     </>
   );
 };

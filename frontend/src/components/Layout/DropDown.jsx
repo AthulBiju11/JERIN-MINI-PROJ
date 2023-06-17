@@ -19,7 +19,7 @@ const DropDown = ({ categoriesData, setDropDown }) => {
             onClick={() => submitHandle(i)}
           >
             <img
-              src={i.image_Url}
+              src={i.img}
               style={{
                 width: "25px",
                 height: "25px",
