@@ -74,10 +74,13 @@ const Footer = () => {
             <div className="logo__footer">
               <img src={mech} alt="" />
               <div className="footer__input">
+                
                 <input type="text" placeholder="Enter Email Address" required />
+                
                 <button className="btn text-white" type="submit">
                   Sign Up
                 </button>
+                
               </div>
               <div className="contact__links flex items-left gap-1 flex-col">
                 <span className="flex items-center mt-3 justify-between">
