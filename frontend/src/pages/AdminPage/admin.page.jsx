@@ -1,48 +1,46 @@
-import React from "react";
+import React, { useState } from 'react';
+import Categories from './category.component';
+import Products from './products.component';
 
-const Admin = () => {
+function Admin() {
+  const [selectedMenuItem, setSelectedMenuItem] = useState('categories');
+
+  const handleMenuItemClick = (menuItem) => {
+    setSelectedMenuItem(menuItem);
+  };
+
   return (
-    <div
-      style={{
-        backgroundColor: "red",
-        width: "80vw",
-        height: "100vh",
-        margin: "auto",
-      }}
-    >
-      <div>
-        <h1
-          style={{ textAlign: "center", fontSize: "50px", fontWeight: "bold" }}
-        >
-          Products
-        </h1>
-        <div>
-          <table class="border-collapse border border-slate-400 ...">
-            <thead>
-              <tr>
-                <th class="border border-slate-300 ...">State</th>
-                <th class="border border-slate-300 ...">City</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="border border-slate-300 ...">Indiana</td>
-                <td class="border border-slate-300 ...">Indianapolis</td>
-              </tr>
-              <tr>
-                <td class="border border-slate-300 ...">Ohio</td>
-                <td class="border border-slate-300 ...">Columbus</td>
-              </tr>
-              <tr>
-                <td class="border border-slate-300 ...">Michigan</td>
-                <td class="border border-slate-300 ...">Detroit</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+    <div className="flex">
+      <div className="w-72 h-screen bg-gray-100 border-r border-gray-300">
+        <ul className="list-none p-0">
+          <li
+            onClick={() => handleMenuItemClick('categories')}
+            className={`cursor-pointer py-3 pl-4 ${
+              selectedMenuItem === 'categories'
+                ? 'border-b-2 border-blue-500 bg-gray-200 font-bold'
+                : 'font-normal'
+            }`}
+          >
+            Categories
+          </li>
+          <li
+            onClick={() => handleMenuItemClick('products')}
+            className={`cursor-pointer py-3 pl-4 ${
+              selectedMenuItem === 'products'
+                ? 'border-b-2 border-blue-500 bg-gray-200 font-bold'
+                : 'font-normal'
+            }`}
+          >
+            Products
+          </li>
+        </ul>
+      </div>
+      <div className="flex-1 p-4">
+        {selectedMenuItem === 'categories' && <Categories />}
+        {selectedMenuItem === 'products' && <Products />}
       </div>
     </div>
   );
-};
+}
 
 export default Admin;

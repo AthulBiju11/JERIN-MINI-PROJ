@@ -27,6 +27,7 @@ const Navbar = ({ active }) => {
       }),
   });
 
+  console.log(data);
 
 
   return (

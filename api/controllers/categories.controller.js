@@ -11,11 +11,12 @@ export const getCategories = async (req, res,next) => {
 
 export const createCategories = async (req, res, next) => {
   
+  const {title,img,cat} = req.body;
+
     const newCategory = new Categories({
-      title: "Engineering & Construction",
-      
-      img: "https://res.cloudinary.com/dwsuanvje/image/upload/v1687021744/MechKart/Mechkart_Backend_images/pngwing.com_q05xt4.png",
-      cat: "ec",
+      title: title,
+      img: img,
+      cat: cat,
     });
 
     try{
