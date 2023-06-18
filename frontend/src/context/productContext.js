@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext,} from "react";
 import { useQuery } from "@tanstack/react-query";
 import newRequest from "../utils/newRequest";
 
