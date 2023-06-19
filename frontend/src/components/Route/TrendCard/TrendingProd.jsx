@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import Styles from "../../../styles/style";
 import TrendCard from "../../TrendingProductCard/TrendProdCard";
 import TrendProdCard2 from "../../TrendProdCard2/TrendProdCard2";
+import { ProductsContext } from "../../../context/productContext";
 
 const TrendingProd = () => {
+
+  const {data} = useContext(ProductsContext);
   return (
     <div>
       {/* Heading */}
@@ -17,10 +20,12 @@ const TrendingProd = () => {
       {/* product card */}
       <div className="flex w-[100%] justify-center ">
         <div className="grid grid-cols-4 gap-[30px]">
-          <TrendCard />
-          <TrendCard />
-          <TrendCard />
-          <TrendCard />
+          {data &&
+            data.filter((product)=>product.attribute.trending === true).map((product,i)=>{
+              return <TrendCard product={product} key={i}/>
+            })
+            }
+          
         </div>
       </div>
 

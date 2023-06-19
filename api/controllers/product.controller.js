@@ -1,4 +1,5 @@
 import Product from "../models/product.model.js";
+import createError from "../utils/createError.js";
 
 export const getProducts = async (req, res,next) => {
   try {
@@ -12,6 +13,8 @@ export const getProducts = async (req, res,next) => {
 export const setProducts = async (req, res, next) => {
   
   const { title, img, cat, price, attribute } = req.body;
+  
+  if(!req.isAdmin) return next(createError(403,"You are not authorised!"));
 
   const newProduct = new Product({
     title: title,

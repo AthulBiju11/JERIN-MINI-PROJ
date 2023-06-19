@@ -3,21 +3,16 @@ import { Link } from "react-router-dom";
 import { navItems } from "../../static/data";
 import Styles from "../../styles/style";
 import DropDown from "./DropDown";
-import {
-  AiOutlineHeart,
-  AiOutlineShoppingCart,
-} from "react-icons/ai";
+import { AiOutlineHeart, AiOutlineShoppingCart } from "react-icons/ai";
 import { CgProfile } from "react-icons/cg";
 import { IoIosArrowDown } from "react-icons/io";
 import { BiMenuAltLeft } from "react-icons/bi";
-import { categoriesData } from "../../static/data";
 import { useQuery } from "@tanstack/react-query";
 import newRequest from "../../utils/newRequest";
 
-
 const Navbar = ({ active }) => {
-  const [dropDown, setDropDown] = useState(false);
-  
+  const [profileDropDown, setProfileDropDown] = useState(false);
+  const [categoriesDropDown, setCategoriesDropDown] = useState(false);
 
   const { isLoading, error, data, refetch } = useQuery({
     queryKey: ["categories"],
@@ -27,8 +22,15 @@ const Navbar = ({ active }) => {
       }),
   });
 
-  console.log(data);
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
+  const handleProfileClick = () => {
+    setProfileDropDown(!profileDropDown);
+  };
+
+  const handleCategoriesClick = () => {
+    setCategoriesDropDown(!categoriesDropDown);
+  };
 
   return (
     <>
@@ -38,7 +40,7 @@ const Navbar = ({ active }) => {
           {/* sub header (purple box) includes categories, home bestselling etc.. */}
 
           {/* categories dropdown */}
-          <div onClick={() => setDropDown(!dropDown)}>
+          <div onClick={handleCategoriesClick}>
             <div className="relative h-[60px] mt-[10px] w-[270px] hidden lg:block">
               <BiMenuAltLeft size={30} className="absolute top-3.5 left-2" />
               <button className="h-[100%] w-full flex justify-between items-center pl-[50px] bg-[#fff] font-sans text-lg font-[400] select-none rounded-t-md">
@@ -47,56 +49,53 @@ const Navbar = ({ active }) => {
               <IoIosArrowDown
                 size={20}
                 className="absolute right-2 top-[21px] cursor-pointer"
-                onClick={() => setDropDown(!dropDown)}
+                onClick={handleCategoriesClick}
               />
               {/* dropdown logic */}
-              {dropDown ? (
+              {categoriesDropDown && (
                 <DropDown
                   categoriesData={data}
-                  setDropDown={setDropDown}
+                  setDropDown={setCategoriesDropDown}
                 />
-              ) : null}
+              )}
             </div>
           </div>
           {/* categories dropdown*/}
         </div>
         <div className="flex m-8">
-          {/* Navbar ie,home bestselling etc....*/}
+          {/* Navbar ie, home bestselling etc....*/}
           <div className={`${Styles.noramlFlex} mr-20`}>
             <div className={`block lg:flex`}>
               {navItems &&
-                navItems.map((i, index) => (
+                navItems.map((item, index) => (
                   <div className="flex" key={index}>
                     <Link
-                      to={i.url}
+                      to={item.url}
                       className={`${
                         active === index + 1
                           ? "underline text-[#fefec9]"
                           : "text-black lg:text-[#fff]"
                       } pb-[30px] lg:pb-0 font-[500] px-5 cursor-pointer`}
                     >
-                      {i.title}
+                      {item.title}
                     </Link>
                   </div>
                 ))}
             </div>
           </div>
           {/* navbar */}
-          {/* whishlist heart */}
+          {/* wishlist heart */}
           <div className="flex items-center gap-4">
             <div className={`${Styles.noramlFlex}`}>
               <div className="relative cursor-pointer">
-                <AiOutlineHeart
-                  size={30}
-                  color="rgb(255 255 255 / 90%)"
-                />
+                <AiOutlineHeart size={30} color="rgb(255 255 255 / 90%)" />
                 <span className="absolute right-0 top-0 rounded-full bg-[#ff0b0b] w-[13px] h-[13px] top right p-0 m-0 text-white font-mono text-[9px] leading-tight text-center">
                   0
                 </span>
               </div>
             </div>
 
-            {/* whishlist heart */}
+            {/* wishlist heart */}
 
             {/* Shopping cart */}
             <div>
@@ -115,16 +114,48 @@ const Navbar = ({ active }) => {
             {/* ShoppingCart */}
 
             {/* profile icon */}
-            <div>
-              <div className={`${Styles.noramlFlex}`}>
-                <div className="relative cursor-pointer">
-                  <CgProfile
-                    size={30}
-                    color="rgb(255 255 255 / 90%)"
+            <div className={`${Styles.noramlFlex} relative`}>
+              <div className="cursor-pointer" onClick={handleProfileClick}>
+                {currentUser?.img ? (
+                  <img
+                    src={currentUser.img}
+                    alt="Profile"
+                    style={{
+                      width: "30px",
+                      height: "30px",
+                      borderRadius: "15px",
+                    }}
                   />
-                </div>
+                ) : (
+                  <CgProfile size={30} color="rgb(255 255 255 / 90%)" />
+                )}
               </div>
+              {profileDropDown && (
+                <div className="absolute top-full mt-2 right-0 w-screen max-w-[200px] bg-white rounded-md shadow-lg divide-y divide-[#682A85] text-gray-800 z-10">
+                  <Link
+                    to="/profile"
+                    className="block py-2 px-4 hover:bg-gray-100 rounded-md"
+                  >
+                    Profile
+                  </Link>
+                  {currentUser?.isAdmin && (
+                    <Link
+                      to="/admin"
+                      className="block py-2 px-4 hover:bg-gray-100"
+                    >
+                      Admin
+                    </Link>
+                  )}
+                  <Link
+                    to="/logout"
+                    className="block py-2 px-4 hover:bg-gray-100"
+                  >
+                    Logout
+                  </Link>
+                </div>
+              )}
             </div>
+            {/* profile icon */}
           </div>
         </div>
       </div>

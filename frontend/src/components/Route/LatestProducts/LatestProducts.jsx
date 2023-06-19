@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import Styles from "../../../styles/style";
 import LatestProdCard from "../../LatestProductsCard/LatestProdCard";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { ProductsContext } from "../../../context/productContext";
 
 const LatestProducts = () => {
   const [active, setActive] = useState(0);
+  
+  const {data} = useContext(ProductsContext);
+  console.log(data);
   return (
     <div>
       {/* Heading */}
@@ -59,12 +63,13 @@ const LatestProducts = () => {
       {/* product card */}
       <div className="flex justify-center">
         <div className="grid grid-cols-3 gap-[37px]">
-          <LatestProdCard />
-          <LatestProdCard />
-          <LatestProdCard />
-          <LatestProdCard />
-          <LatestProdCard />
-          <LatestProdCard />
+        {
+          data && 
+          data.filter((product)=>product.attribute.latest === true).map((product,i)=>{
+            return <LatestProdCard product ={ product } key={i}/>
+          })
+        }
+        
         </div>
       </div>
       {/* product card */}

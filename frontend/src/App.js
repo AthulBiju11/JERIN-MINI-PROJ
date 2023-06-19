@@ -13,9 +13,12 @@ import {
 } from "@tanstack/react-query";
 
 import { ProductsProvider } from "./context/productContext";
+import Cart from "./pages/CartPage/cart.page";
 
 
 const App = () => {
+
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
   const queryClient = new QueryClient();
   return (
     <div>
@@ -27,7 +30,12 @@ const App = () => {
               <Route path="/signup" element={<SignupPage />} />
               <Route path="/" element={<HomePage />} />
               <Route path="/products" element={<Products />} />
-              <Route path="/admin" element={<Admin />} />
+              <Route path="/cart" element={<Cart />} />
+
+              {currentUser?.isAdmin && 
+                <Route path="/admin" element={<Admin />} />
+              };
+              
             </Routes>
           </BrowserRouter>
           </ProductsProvider>

@@ -45,6 +45,18 @@ function Products() {
     onSuccess: () => {
       queryClient.invalidateQueries(["products"]);
     },
+    onError : (err) => {
+      toast.error(err.response.data, {
+        position: "top-center",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
   });
 
   const handleSubmit = (e) => {
@@ -87,7 +99,7 @@ function Products() {
     }));
   };
 
-  console.log(product);
+
 
   return (
     <div>
@@ -121,9 +133,9 @@ function Products() {
                   key={index}
                   className={index % 2 === 0 ? "bg-gray-200" : "bg-white"}
                 >
-                  <td className="px-4 py-2 border-b border-r flex justify-center items-center">
+                  <td className="px-4 py-2 border-b border-r">
                     <div
-                      className="w-12 h-12 bg-cover bg-center rounded"
+                      className="w-12 h-12 bg-cover bg-center rounded mx-auto flex justify-center"
                       style={{
                         backgroundImage: `url(${product.img})`,
                         backgroundSize: "cover",
@@ -189,7 +201,6 @@ function Products() {
                         href={product.img}
                         target="_blank"
                         rel="noopener noreferrer"
-                        
                       >
                         {product.img}
                       </a>
@@ -288,7 +299,7 @@ function Products() {
               </div>
             </div>
           </div>
-
+  
           <button
             type="submit"
             className="bg-green-500 text-white py-2 px-4 rounded cursor-pointer transition-colors duration-300 hover:bg-green-600"
@@ -301,6 +312,7 @@ function Products() {
       </div>
     </div>
   );
+  
 }
 
 export default Products;
