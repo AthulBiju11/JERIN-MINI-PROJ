@@ -7,7 +7,7 @@ const FeaturedProducts = () => {
 
   const {data} = useContext(ProductsContext);
 
-  console.log(data);
+  
 
   return (
     <div>
