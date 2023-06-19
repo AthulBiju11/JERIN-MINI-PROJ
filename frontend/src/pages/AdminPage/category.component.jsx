@@ -180,7 +180,7 @@ function Category() {
               />
               <button
                 type="button"
-                className="bg-blue-500 text-white px-4 py-2 rounded ml-2"
+                className="bg-[#682A85] text-white px-4 py-2 rounded ml-2"
                 onClick={handleUpload}
               >
                 Upload
@@ -190,7 +190,7 @@ function Category() {
 
           <button
             type="submit"
-            className="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-full transition-colors duration-300"
+            className="bg-[#682A85] hover:bg-[#983ec2] text-white px-6 py-2 rounded-md transition-colors duration-300"
           >
             Submit
           </button>

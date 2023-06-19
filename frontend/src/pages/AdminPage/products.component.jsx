@@ -257,7 +257,7 @@ function Products() {
               />
               <button
                 type="button"
-                className="bg-blue-500 text-white px-4 py-2 rounded ml-2"
+                className="bg-[#682A85] text-white px-4 py-2 rounded ml-2"
                 onClick={handleUpload}
               >
                 Upload
@@ -302,9 +302,9 @@ function Products() {
   
           <button
             type="submit"
-            className="bg-green-500 text-white py-2 px-4 rounded cursor-pointer transition-colors duration-300 hover:bg-green-600"
-            onMouseOver={(e) => (e.target.style.backgroundColor = "#45a049")}
-            onMouseLeave={(e) => (e.target.style.backgroundColor = "#4caf50")}
+            className="bg-[#682A85] text-white py-2 px-4 rounded cursor-pointer transition-colors duration-300 hover:bg-[#983ec2]"
+            // onMouseOver={(e) => (e.target.style.backgroundColor = "#983ec2")}
+            // onMouseLeave={(e) => (e.target.style.backgroundColor = "#983ec1")}
           >
             Submit
           </button>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { navItems } from "../../static/data";
 import Styles from "../../styles/style";
 import DropDown from "./DropDown";
@@ -30,6 +30,16 @@ const Navbar = ({ active }) => {
 
   const handleCategoriesClick = () => {
     setCategoriesDropDown(!categoriesDropDown);
+  };
+  const navigate = useNavigate();
+  const handleLogout = async () => {
+    try {
+      await newRequest.post("/auth/logout");
+      localStorage.setItem("currentUser", null);
+      navigate("/");
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -86,14 +96,14 @@ const Navbar = ({ active }) => {
           {/* navbar */}
           {/* wishlist heart */}
           <div className="flex items-center gap-4">
-            <div className={`${Styles.noramlFlex}`}>
+            {/* <div className={`${Styles.noramlFlex}`}>
               <div className="relative cursor-pointer">
                 <AiOutlineHeart size={30} color="rgb(255 255 255 / 90%)" />
                 <span className="absolute right-0 top-0 rounded-full bg-[#ff0b0b] w-[13px] h-[13px] top right p-0 m-0 text-white font-mono text-[9px] leading-tight text-center">
                   0
                 </span>
               </div>
-            </div>
+            </div> */}
 
             {/* wishlist heart */}
 
@@ -146,12 +156,13 @@ const Navbar = ({ active }) => {
                       Admin
                     </Link>
                   )}
-                  <Link
-                    to="/logout"
+                  <div
+                    
                     className="block py-2 px-4 hover:bg-gray-100"
+                    onClick={handleLogout}
                   >
                     Logout
-                  </Link>
+                  </div>
                 </div>
               )}
             </div>
