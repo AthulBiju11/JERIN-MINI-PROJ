@@ -9,6 +9,7 @@ export const register = async (req, res, next) => {
     const newUser = new User({
       ...req.body,
       password: hash,
+      isAdmin : false,
     });
 
     await newUser.save();
@@ -27,10 +28,11 @@ export const login = async (req, res, next) => {
     if (!isCorrect)
       return next(createError(400, "Wrong password or username!"));
 
+    console.log(user.isAdmin);
     const token = jwt.sign(
       {
         id: user._id,
-        isSeller: user.isSeller,
+        isAdmin: user.isAdmin,
       },
       process.env.JWT_KEY
     );

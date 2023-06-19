@@ -1,4 +1,5 @@
 import Categories from "../models/category.model.js";
+import createError from "../utils/createError.js";
 
 export const getCategories = async (req, res,next) => {
   try {
@@ -11,11 +12,12 @@ export const getCategories = async (req, res,next) => {
 
 export const createCategories = async (req, res, next) => {
   
+  const {title,img,cat} = req.body;
+  if(!req.isAdmin) return next(createError(403,"You are not authorised"));
     const newCategory = new Categories({
-      title: "Engineering & Construction",
-      
-      img: "https://res.cloudinary.com/dwsuanvje/image/upload/v1687021744/MechKart/Mechkart_Backend_images/pngwing.com_q05xt4.png",
-      cat: "ec",
+      title: title,
+      img: img,
+      cat: cat,
     });
 
     try{
