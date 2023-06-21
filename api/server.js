@@ -11,6 +11,7 @@ import authRoute from "./routes/auth.route.js";
 import categoriesRoute from  "./routes/categories.route.js"
 import productRoute from "./routes/product.route.js"
 import cartRoute from "./routes/cart.routes.js"
+import requestRoute from "./routes/request.route.js"
 import cookieParser from "cookie-parser";
 import cors from "cors";
 
@@ -41,6 +42,7 @@ app.use("/api/reviews", reviewRoute);
 app.use("/api/categories",categoriesRoute);
 app.use("/api/product",productRoute);
 app.use("/api/cart",cartRoute);
+app.use("/api/request",requestRoute);
 
 app.use((err, req, res, next) => {
   const errorStatus = err.status || 500;

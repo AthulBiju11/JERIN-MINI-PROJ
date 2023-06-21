@@ -11,10 +11,11 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ProductsProvider } from "./context/productContext";
 import Cart from "./pages/CartPage/cart.page";
 import { CartProvider } from "./context/cartContext";
-import { useDispatch, useSelector } from "react-redux";
-import { pushCartToDatabase } from "./store/cart/cart.reducer";
-import { selectCartItems } from "./store/cart/cart.selector";
 
+import Profile from "./pages/ProfilePage/profile.page";
+
+
+import newRequest from "./utils/newRequest";
 
 const App = () => {
 
@@ -34,6 +35,12 @@ const App = () => {
     };
   }, []);
 
+  useEffect(()=>{
+    if(currentUser){
+      const res = newRequest.get(`/cart/${currentUser._id}`)
+      
+    }
+  },[currentUser])
   
   const queryClient = new QueryClient();
   return (
@@ -48,6 +55,7 @@ const App = () => {
                 <Route path="/signup" element={<SignupPage />} />
                 <Route path="/" element={<HomePage />} />
                 <Route path="/products" element={<Products />} />
+                <Route path="/profile" element={<Profile />} />
                 
                 {currentUser && (<Route path="/cart" element={<Cart />} />)}             
 
