@@ -173,12 +173,19 @@ const Navbar = ({ active }) => {
                   >
                     Profile
                   </Link>
-                  {currentUser?.isAdmin && (
+                  {currentUser?.isAdmin ? (
                     <Link
                       to="/admin"
                       className="block py-2 px-4 hover:bg-gray-100"
                     >
                       Admin
+                    </Link>
+                  ): (
+                    <Link
+                      to="/request"
+                      className="block py-2 px-4 hover:bg-gray-100"
+                    >
+                      Add Request
                     </Link>
                   )}
                   <div
