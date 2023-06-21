@@ -1,6 +1,28 @@
 import Cart from "../models/cart.model.js";
 import createError from "../utils/createError.js";
 
+export const setCartItems = async(req,res,next) => {
+  const items = req.body;
+  // console.log(items);
+  
+  const userId = req.userId;
+  try{
+    let existingCart = await Cart.findOne({user : userId});
+    if(existingCart){
+      existingCart.items = items;
+      existingCart.save();
+    }else{
+      const newCart = new Cart({
+        user: userId,
+        items: items,
+      });
+      await newCart.save();
+    }
+  }catch(err){
+    next(createError(500,"Something went wrong"))
+  }
+}
+
 export const addCartItem = async (req, res, next) => {
     const { productId } = req.body;
     const userId = req.userId;

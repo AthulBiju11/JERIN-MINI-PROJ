@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { navItems } from "../../static/data";
 import Styles from "../../styles/style";
@@ -9,6 +9,10 @@ import { IoIosArrowDown } from "react-icons/io";
 import { BiMenuAltLeft } from "react-icons/bi";
 import { useQuery } from "@tanstack/react-query";
 import newRequest from "../../utils/newRequest";
+import { CartContext } from "../../context/cartContext";
+import { useSelector } from "react-redux";
+import {selectCartCount} from "../../store/cart/cart.selector.js"
+import { toast } from "react-toastify";
 
 const Navbar = ({ active }) => {
   const [profileDropDown, setProfileDropDown] = useState(false);
@@ -21,6 +25,9 @@ const Navbar = ({ active }) => {
         return res.data;
       }),
   });
+
+  const cartNumber = useSelector(selectCartCount);
+
 
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
@@ -41,6 +48,23 @@ const Navbar = ({ active }) => {
       console.log(err);
     }
   };
+
+  const handleNavigate = () => {
+    if(!currentUser){
+      toast.error("Sign in to access cart!", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }else{
+      navigate('/cart')
+    }
+  }
 
   return (
     <>
@@ -114,9 +138,10 @@ const Navbar = ({ active }) => {
                   <AiOutlineShoppingCart
                     size={30}
                     color="rgb(255 255 255 / 90%)"
+                    onClick={handleNavigate}
                   />
                   <span className="absolute left-5 top-0 rounded-full bg-[#ff0b0b] w-[13px] h-[13px] top right p-0 m-0 text-white font-mono text-[9px] leading-tight text-center">
-                    0
+                    {cartNumber}
                   </span>
                 </div>
               </div>
