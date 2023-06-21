@@ -14,7 +14,7 @@ import { CartProvider } from "./context/cartContext";
 import { useDispatch, useSelector } from "react-redux";
 import { pushCartToDatabase } from "./store/cart/cart.reducer";
 import { selectCartItems } from "./store/cart/cart.selector";
-import { current } from "@reduxjs/toolkit";
+
 
 const App = () => {
 
@@ -23,7 +23,7 @@ const App = () => {
   useEffect(() => {
     const handleBeforeUnload = (event) => {
       if (event.currentTarget.performance.navigation.type !== 1) {
-        localStorage.clear();
+        localStorage.removeItem("persist:root");
       }
     };
 
