@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Categories from './category.component';
 import Products from './products.component';
+import Requests from './requests.component';
 
 function Admin() {
   const [selectedMenuItem, setSelectedMenuItem] = useState('categories');
@@ -33,12 +34,25 @@ function Admin() {
           >
             Products
           </li>
+          <li
+            onClick={() => handleMenuItemClick('requests')}
+            className={`cursor-pointer py-3 pl-4 ${
+              selectedMenuItem === 'requests'
+                ? 'border-b-2 border-blue-500 bg-gray-200 font-bold'
+                : 'font-normal'
+            }`}
+          >
+            Requests
+          </li>
         </ul>
       </div>
       <div className="flex-1 p-4">
         {selectedMenuItem === 'categories' && <Categories />}
         {selectedMenuItem === 'products' && <Products />}
-      </div>
+        {selectedMenuItem === 'requests' && <Requests />}
+         
+        
+      </div >
     </div>
   );
 }
