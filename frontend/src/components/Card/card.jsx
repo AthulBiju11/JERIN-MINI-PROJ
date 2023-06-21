@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, } from "react-redux";
 import { addItemToCartWithDatabaseUpdate } from "../../store/cart/cart.reducer";
 import { toast } from "react-toastify";
 

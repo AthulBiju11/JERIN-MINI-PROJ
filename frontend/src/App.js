@@ -11,10 +11,9 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ProductsProvider } from "./context/productContext";
 import Cart from "./pages/CartPage/cart.page";
 import { CartProvider } from "./context/cartContext";
-import { useDispatch, useSelector } from "react-redux";
-import { pushCartToDatabase } from "./store/cart/cart.reducer";
-import { selectCartItems } from "./store/cart/cart.selector";
-import { current } from "@reduxjs/toolkit";
+
+
+import newRequest from "./utils/newRequest";
 
 const App = () => {
 
@@ -23,7 +22,7 @@ const App = () => {
   useEffect(() => {
     const handleBeforeUnload = (event) => {
       if (event.currentTarget.performance.navigation.type !== 1) {
-        localStorage.clear();
+        localStorage.removeItem("persist:root");
       }
     };
 
@@ -34,6 +33,12 @@ const App = () => {
     };
   }, []);
 
+  useEffect(()=>{
+    if(currentUser){
+      const res = newRequest.get(`/cart/${currentUser._id}`)
+      console.log(res);
+    }
+  },[currentUser])
   
   const queryClient = new QueryClient();
   return (
