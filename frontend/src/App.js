@@ -16,6 +16,7 @@ import Profile from "./pages/ProfilePage/profile.page";
 
 
 import newRequest from "./utils/newRequest";
+import UserRequests from "./pages/UserRequestPage/userRequest.component";
 
 const App = () => {
 
@@ -56,6 +57,7 @@ const App = () => {
                 <Route path="/" element={<HomePage />} />
                 <Route path="/products" element={<Products />} />
                 <Route path="/profile" element={<Profile />} />
+                <Route path="/user-request" element={<UserRequests />} />
                 
                 {currentUser && (<Route path="/cart" element={<Cart />} />)}             
 

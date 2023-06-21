@@ -182,7 +182,7 @@ const Navbar = ({ active }) => {
                     </Link>
                   ): (
                     <Link
-                      to="/request"
+                      to="/user-request"
                       className="block py-2 px-4 hover:bg-gray-100"
                     >
                       Add Request
