@@ -52,7 +52,7 @@ function Admin() {
         {selectedMenuItem === 'requests' && <Requests />}
          
         
-      </div>
+      </div >
     </div>
   );
 }
