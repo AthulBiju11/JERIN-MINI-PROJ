@@ -26,17 +26,13 @@ const FeaturedProducts = () => {
 <div className='flex float-left w-[100%] justify-center'>
 {data && 
   data.filter((product) => product.attribute.featured || product.attribute.trending  === true).map((product,i) => {
-    console.log(product)
+    
     return <Card product={product} key={i}/>
   })
 }
 
 
 </div>
-{/* product card */}
-
-
-
 
     </div>
   )

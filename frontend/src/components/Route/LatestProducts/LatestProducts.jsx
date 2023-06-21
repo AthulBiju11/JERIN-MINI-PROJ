@@ -9,7 +9,7 @@ const LatestProducts = () => {
   const [active, setActive] = useState(0);
   
   const {data} = useContext(ProductsContext);
-  console.log(data);
+
   return (
     <div>
       {/* Heading */}

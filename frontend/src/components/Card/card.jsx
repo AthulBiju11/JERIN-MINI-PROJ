@@ -1,24 +1,36 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
-import { useMutation } from "@tanstack/react-query";
-import newRequest from "../../utils/newRequest";
+import { useDispatch, useSelector } from "react-redux";
+import { addItemToCartWithDatabaseUpdate } from "../../store/cart/cart.reducer";
+import { toast } from "react-toastify";
 
 const Card = ({ product }) => {
-  const { img, title, price, _id } = product;
+  const { img, title, price } = product;
   const [click, setClick] = useState(false);
 
-  const mutation = useMutation({
-    mutationFn : (product) => {
-      return newRequest.post("/cart",{productId : _id})
-    }
-  })
+  const dispatch = useDispatch();
+
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
 
   const handleAdd = () => {
-    mutation.mutate(product);
-  }
+    if (!currentUser) {
+      toast.error("Sign in to access cart!", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    } else {
 
-  
+      dispatch(addItemToCartWithDatabaseUpdate(product));
+    }
+  };
 
   return (
     <div className="group w-[282px] flex-column sm:shadow-xl bg-[#FCF5FE] m-[10px] relative">
@@ -60,7 +72,10 @@ const Card = ({ product }) => {
             </h5>
           </div>
           <Link to="/" className="flex justify-center">
-            <div className="bg-[#FB2E86] w-[70px] h-[30px] text-center mt-[15px] text-[white] sm:shadow-md" onClick={handleAdd}>
+            <div
+              className="bg-[#FB2E86] w-[70px] h-[30px] text-center mt-[15px] text-[white] sm:shadow-md"
+              onClick={handleAdd}
+            >
               Add
             </div>
           </Link>

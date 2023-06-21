@@ -1,14 +1,29 @@
 import React, { useContext } from "react";
 import { CartContext } from "../../context/cartContext";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import newRequest from "../../utils/newRequest";
+import { useDispatch, useSelector } from "react-redux";
+import { selectCartItems } from "../../store/cart/cart.selector";
+import { addItemToCart, removeItemFromCart,clearItemFromCart,  } from "../../store/cart/cart.reducer";
+import { removeItemFromCartWithDatabaseUpdate,addItemToCartWithDatabaseUpdate,clearItemFromCartWithDatabaseUpdate} from "../../store/cart/cart.reducer";
 
 const Cart = () => {
-  const { data } = useContext(CartContext);
 
-  const handleRemove = (itemId) => {
-    // Implement the remove logic for the item with the given ID
-  };
+  const cartItems = useSelector(selectCartItems);
+  const dispatch = useDispatch();
+  
+  const handleAdd = (product) => {
+    // addMutation.mutate(product);
+    dispatch(addItemToCartWithDatabaseUpdate(product));
+  }
 
-  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  const handleReduce = (product) => {
+    dispatch(removeItemFromCartWithDatabaseUpdate(product));
+  }
+
+  const handleRemove = (product) => {
+    dispatch(clearItemFromCartWithDatabaseUpdate(product));
+  }
 
   return (
     <div className="p-5">
@@ -29,8 +44,8 @@ const Cart = () => {
                 </tr>
               </thead>
               <tbody>
-                {data &&
-                  data?.map((item, index) => (
+                {cartItems &&
+                  cartItems?.map((item, index) => (
                     <tr
                       key={item.id}
                       className={index % 2 === 0 ? "bg-white" : "bg-gray-100"}
@@ -49,14 +64,14 @@ const Cart = () => {
                         <div className="flex items-center">
                           <button
                             className="bg-gray-200 hover:bg-gray-300 text-gray-700 py-1 px-2 rounded-l"
-                            onClick={() => console.log("Decrease quantity")}
+                            onClick={()=>handleReduce(item)}
                           >
                             -
                           </button>
                           <span className="mx-2">{item.quantity}</span>
                           <button
                             className="bg-gray-200 hover:bg-gray-300 text-gray-700 py-1 px-2 rounded-r"
-                            onClick={() => console.log("Increase quantity")}
+                            onClick={() =>handleAdd(item)}
                           >
                             +
                           </button>
@@ -66,7 +81,7 @@ const Cart = () => {
                       <td>
                         <button
                           className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded"
-                          onClick={() => handleRemove(item.id)}
+                          onClick={()=>handleRemove(item)}
                         >
                           Remove
                         </button>
