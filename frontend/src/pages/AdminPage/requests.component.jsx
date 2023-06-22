@@ -5,7 +5,7 @@ import newRequest from "../../utils/newRequest"
 function Requests() {
   // Dummy data for the table
 
-  const [requests,setRequests] = useState(null)
+  const [requests,setRequests] = useState([]);
 
   const initialFormData = {
     username: "",
