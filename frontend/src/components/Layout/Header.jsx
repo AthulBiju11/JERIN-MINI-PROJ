@@ -21,6 +21,7 @@ const Header = () => {
   const searchRef = useRef(null);
 
   const {data} = useContext(ProductsContext);
+  console.log(data)
   
 
   useEffect(() => {

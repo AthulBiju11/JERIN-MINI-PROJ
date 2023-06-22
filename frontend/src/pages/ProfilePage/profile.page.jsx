@@ -4,7 +4,10 @@ import Navbar from "../../components/Layout/Navbar";
 import Footer from "../../components/Layout/Footer/Footer";
 import imgimg from "../../assets/team-2-800x800.jpg";
 
+
 export default function Profile() {
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  console.log(currentUser)
   return (
     <>
       <Navbar transparent />
@@ -51,7 +54,7 @@ export default function Profile() {
                     <div className="relative">
                       <img
                         alt="..."
-                        src={imgimg}
+                        src={currentUser?.img}
                         className="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16"
                         style={{ maxWidth: "150px" }}
                       />
@@ -74,7 +77,7 @@ export default function Profile() {
                 </div>
                 <div className="text-center mt-12">
                   <h3 className="text-4xl font-semibold leading-normal mb-2 text-gray-800 mb-2">
-                    Jenna Stones
+                    {currentUser?.fullname}
                   </h3>
                   <div className="text-sm leading-normal mt-0 mb-2 text-gray-500 font-bold uppercase">
                     <i className="fas fa-map-marker-alt mr-2 text-lg text-gray-500"></i>{" "}

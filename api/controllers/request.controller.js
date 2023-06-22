@@ -10,6 +10,30 @@ export const getRequests = async (req, res, next) => {
   }
 };
 
+export const validateRequest = async (req,res,next) => {
+  const {validRequest,value} = req.body;
+  const validatedRequest = new Request({
+    ...validRequest,
+    status : value,
+  })
+  try{
+    const request = await Request.findByIdAndUpdate(validRequest._id,validatedRequest);
+    res.status(200).send("Successfully updated");
+  }catch(error){
+    next(error);
+  }
+}
+
+export const getRequestsById = async (req, res, next) => {
+  const userId = req.userId;
+  try {
+    const requests = await Request.find({user : userId});
+    res.status(200).send(requests);
+  } catch (err) {
+    next(err);
+  }
+};
+
 export const setRequests = async (req, res, next) => {
   console.log(req.body);
   const {  username, email, requests, quantity } = req.body;
