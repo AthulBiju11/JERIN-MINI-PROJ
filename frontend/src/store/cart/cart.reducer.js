@@ -1,6 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import newRequest from "../../utils/newRequest";
 import { toast } from "react-toastify";
+import { ProductsContext } from "../../context/productContext";
+import { useContext } from "react";
 
 //These are the functions that calls for the execution of updation of LocalCart first and then the updation of Database - START
 export const addItemToCartWithDatabaseUpdate = createAsyncThunk(
@@ -57,11 +59,10 @@ export const clearItemFromCartWithDatabaseUpdate = createAsyncThunk(
 //The funcvtion that we used to update the cartItems in our database with the updated Local CartValue (Database Modifications) - START
 export const pushCartToDatabase = createAsyncThunk(
   "cart/pushCartToDatabase",
-  async (cartItems, thunkAPI) => {
+  (cartItems, thunkAPI) => {
     try {
-      const res = await newRequest
-        .post("/cart/set", cartItems.items)
-        console.log(res)
+      const res = newRequest.post("/cart/set", cartItems.items);
+      console.log(res);
     } catch (err) {
       toast.error(err.response.data, {
         position: "top-center",
@@ -76,6 +77,32 @@ export const pushCartToDatabase = createAsyncThunk(
     }
   }
 );
+
+export const fetchCartFromDatabase = createAsyncThunk(
+  "cart/fetchCartFromDatabase",
+  async (userId, thunkAPI) => {
+    try {
+      const res = await newRequest.get(`/cart/${userId}`);
+      console.log(res.data);
+      const res2 = await newRequest.get(`/product`).then((res)=>res.data);
+      thunkAPI.dispatch(cartSlice.actions.convertCartData(res2));
+      return res.data;
+    } catch (err) {
+      toast.error(err.response.data, {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
+  }
+);
+
+
 //The funcvtion that we used to update the cartItems in our database with the updated Local CartValue - END
 
 //Functions for modifying the Cart within the application (Local Modifications) - START
@@ -123,6 +150,10 @@ const CART_INITIAL_STATE = {
   cartItems: [],
   isPushCartToDatabaseLoading: false,
   isPushCartToDatabaseSuccess: false,
+  isFetchCartFromDatabaseLoading: false,
+  isFetchCartFromDatabaseSuccess: false,
+  cartData: [],
+  products: [],
   error: null,
 };
 
@@ -142,6 +173,25 @@ export const cartSlice = createSlice({
     setIsCartOpen: (state, action) => {
       state.isCartOpen = action.payload;
     },
+    convertCartData: (state, action) => {
+      const cartData = state.cartData;
+      const products = action.payload;
+      const cartProductQuantityMap = new Map(
+        cartData.map((item) => [item.product, item.quantity])
+      );
+      const filteredProducts = products
+        .filter((product) => cartProductQuantityMap.has(product._id))
+        .map((product) => ({
+          ...product,
+          quantity: cartProductQuantityMap.get(product._id),
+        }));
+      console.log(filteredProducts);
+      state.cartItems = filteredProducts;
+    },
+    resetCartAction : (state,action) => {
+      state = CART_INITIAL_STATE;
+    }
+
   },
   extraReducers: (builder) => {
     builder
@@ -157,7 +207,22 @@ export const cartSlice = createSlice({
       .addCase(pushCartToDatabase.rejected, (state, action) => {
         state.isPushCartToDatabaseLoading = false; // Indicate that the database update has failed
         state.isPushCartToDatabaseSuccess = false; // Update a failure flag in the state
-      });
+      })
+      .addCase(fetchCartFromDatabase.pending, (state, action) => {
+        state.isFetchCartFromDatabaseLoading = true;
+        state.isFetchCartFromDatabaseSuccess = false;
+      })
+      .addCase(fetchCartFromDatabase.fulfilled, (state, action) => {
+        state.cartData = action.payload;
+        state.isFetchCartFromDatabaseLoading = false;
+        state.isFetchCartFromDatabaseSuccess = true;
+      })
+      .addCase(fetchCartFromDatabase.rejected, (state, action) => {
+        state.isFetchCartFromDatabaseLoading = false;
+        state.isFetchCartFromDatabaseSuccess = false;
+        state.error = action.error.message;
+      })
+      
   },
 });
 
@@ -166,6 +231,8 @@ export const {
   removeItemFromCart,
   clearItemFromCart,
   setIsCartOpen,
+  convertCartData,
+  resetCartAction
 } = cartSlice.actions;
 
 export const cartReducer = cartSlice.reducer;

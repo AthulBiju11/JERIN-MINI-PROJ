@@ -10,13 +10,17 @@ import { BiMenuAltLeft } from "react-icons/bi";
 import { useQuery } from "@tanstack/react-query";
 import newRequest from "../../utils/newRequest";
 import { CartContext } from "../../context/cartContext";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {selectCartCount} from "../../store/cart/cart.selector.js"
 import { toast } from "react-toastify";
+import { current } from "@reduxjs/toolkit";
+import { resetCartAction } from "../../store/cart/cart.reducer";
 
 const Navbar = ({ active }) => {
   const [profileDropDown, setProfileDropDown] = useState(false);
   const [categoriesDropDown, setCategoriesDropDown] = useState(false);
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  const dispatch = useDispatch();
 
   const { isLoading, error, data, refetch } = useQuery({
     queryKey: ["categories"],
@@ -25,11 +29,14 @@ const Navbar = ({ active }) => {
         return res.data;
       }),
   });
+  
+  useEffect(()=>{
+    
+  },[currentUser])
 
   const cartNumber = useSelector(selectCartCount);
 
 
-  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
   const handleProfileClick = () => {
     setProfileDropDown(!profileDropDown);
@@ -43,6 +50,7 @@ const Navbar = ({ active }) => {
     try {
       await newRequest.post("/auth/logout");
       localStorage.setItem("currentUser", null);
+      dispatch(resetCartAction());
       navigate("/");
     } catch (err) {
       console.log(err);
@@ -141,7 +149,7 @@ const Navbar = ({ active }) => {
                     onClick={handleNavigate}
                   />
                   <span className="absolute left-5 top-0 rounded-full bg-[#ff0b0b] w-[13px] h-[13px] top right p-0 m-0 text-white font-mono text-[9px] leading-tight text-center">
-                    {cartNumber}
+                    {currentUser ? cartNumber : 0}
                   </span>
                 </div>
               </div>
@@ -167,12 +175,12 @@ const Navbar = ({ active }) => {
               </div>
               {profileDropDown && (
                 <div className="absolute top-full mt-2 right-0 w-screen max-w-[200px] bg-white rounded-md shadow-lg divide-y divide-[#682A85] text-gray-800 z-10">
-                  <Link
+                  {currentUser && <Link
                     to="/profile"
                     className="block py-2 px-4 hover:bg-gray-100 rounded-md"
                   >
                     Profile
-                  </Link>
+                  </Link>}
                   {currentUser?.isAdmin ? (
                     <Link
                       to="/admin"
@@ -190,7 +198,7 @@ const Navbar = ({ active }) => {
                   )}
                   <div
                     
-                    className="block py-2 px-4 hover:bg-gray-100"
+                    className="block py-2 px-4 hover:bg-gray-100 cursor-pointer"
                     onClick={handleLogout}
                   >
                     Logout

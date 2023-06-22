@@ -16,11 +16,15 @@ import Profile from "./pages/ProfilePage/profile.page";
 
 
 import newRequest from "./utils/newRequest";
+import { convertCartData, fetchCartFromDatabase } from "./store/cart/cart.reducer";
 import UserRequests from "./pages/UserRequestPage/userRequest.component";
+import { useDispatch } from "react-redux";
+
 
 const App = () => {
 
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const handleBeforeUnload = (event) => {
@@ -36,12 +40,10 @@ const App = () => {
     };
   }, []);
 
-  useEffect(()=>{
-    if(currentUser){
-      const res = newRequest.get(`/cart/${currentUser._id}`)
-      
-    }
-  },[currentUser])
+  
+
+
+  
   
   const queryClient = new QueryClient();
   return (
