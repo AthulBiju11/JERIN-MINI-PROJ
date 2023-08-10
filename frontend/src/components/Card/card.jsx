@@ -45,23 +45,7 @@ const Card = ({ product }) => {
       <div className="h-[135px] bg-[#fff] group-hover:bg-[#682A85] p-[15px] absolute bottom-0 left-0 right-0">
         <div className="">
           <div className="flex justify-right">
-            {click ? (
-              <AiFillHeart
-                size={22}
-                className=""
-                onClick={() => setClick(!click)}
-                color={click ? "red" : "#333"}
-                title="Remove from wishlist"
-              />
-            ) : (
-              <AiOutlineHeart
-                size={22}
-                className=""
-                onClick={() => setClick(!click)}
-                color={click ? "red" : "#333"}
-                title="Add to wishlist"
-              />
-            )}
+            
             <h5 className="TITLE mx-[22%] text-[#FB2E86] group-hover:text-[#fff] backdrop:font-[600] font-Lato">
               {title}
             </h5>

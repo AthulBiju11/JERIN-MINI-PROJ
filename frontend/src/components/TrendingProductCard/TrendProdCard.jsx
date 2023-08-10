@@ -13,23 +13,7 @@ const TrendCard = ({product}) => {
           alt=""
           className="w-[250px] group-hover:scale-[1.1] transition-all"
         ></img>
-        {click ? (
-          <AiFillHeart
-            size={22}
-            className="cursor-pointer flex float-right my-[-170px] mx-[-30px]"
-            onClick={() => setClick(!click)}
-            color={click ? "red" : "#333"}
-            title="Remove from wishlist"
-          />
-        ) : (
-          <AiOutlineHeart
-            size={22}
-            className="cursor-pointer flex float-right my-[-170px] mx-[-30px]"
-            onClick={() => setClick(!click)}
-            color={click ? "red" : "#333"}
-            title="Add to wishlist"
-          />
-        )}
+        
       </div>
 
       <div className="h-[135px] bg-[#fff] group-hover:bg-[#682A85] p-[15px] ">
