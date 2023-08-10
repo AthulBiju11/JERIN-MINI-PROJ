@@ -1,24 +1,40 @@
 import React, { useContext } from "react";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { CartContext } from "../../context/cartContext";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import newRequest from "../../utils/newRequest";
 import { useDispatch, useSelector } from "react-redux";
-import { selectCartItems } from "../../store/cart/cart.selector";
+import { selectCartItems,selectCartTotal } from "../../store/cart/cart.selector";
 import { addItemToCart, removeItemFromCart,clearItemFromCart,  } from "../../store/cart/cart.reducer";
 import { removeItemFromCartWithDatabaseUpdate,addItemToCartWithDatabaseUpdate,clearItemFromCartWithDatabaseUpdate} from "../../store/cart/cart.reducer";
 
 const Cart = () => {
 
+  
   const cartItems = useSelector(selectCartItems);
+  const cartTotal = useSelector(selectCartTotal);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const dis = 1000;
+  const cartTotFinal = cartTotal - dis;
+ 
+  
   
   const handleAdd = (product) => {
     // addMutation.mutate(product);
     dispatch(addItemToCartWithDatabaseUpdate(product));
+  
+    // TotalAmt=product.quantity*product.price;
+    // return(TotalAmt);
   }
 
   const handleReduce = (product) => {
     dispatch(removeItemFromCartWithDatabaseUpdate(product));
+    
+    
+    
+     
+     
   }
 
   const handleRemove = (product) => {
@@ -27,7 +43,17 @@ const Cart = () => {
 
   return (
     <div className="p-5">
+    <div className="w-[110px] bg-[#682A85] hover:bg-[#983ec2] h-[47px] my-[-5px] flex items-center justify-center rounded-[5px] cursor-pointer">
+        
+        
+        <button className="text-white"onClick={()=>navigate(-1)}>
+          
+            Back
+        </button>
+    
+        </div>
       <div className="bg-gray-200 p-4 mb-5 h-[180px] flex justify-center items-center">
+        
         <h1 className="text-3xl font-bold">Shopping Cart</h1>
       </div>
       <div className="flex">
@@ -77,7 +103,7 @@ const Cart = () => {
                           </button>
                         </div>
                       </td>
-                      <td>${item.price}</td>
+                      <td>Rs.{item.price}</td>
                       <td>
                         <button
                           className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded"
@@ -101,16 +127,22 @@ const Cart = () => {
             <h2 className="text-xl font-bold">Summary</h2>
             <div className="flex justify-between mt-4">
               <div>Total Price:</div>
-              <div>$100</div>
+              <div>Rs.{cartTotal}</div>
             </div>
-            <div className="flex justify-between mt-2">
+             <div className="flex justify-between mt-2">
               <div>Discount:</div>
-              <div>$10</div>
-            </div>
+              <div>Rs.{dis}</div>
+            </div> 
+             
+              
+            
             <div className="flex justify-between mt-2">
               <div>Total:</div>
-              <div>$90</div>
+              {cartTotal &&  
+              <div>Rs.{cartTotFinal}</div>
+}
             </div>
+             
             <div className="border-t mt-4"></div>
           </div>
         </div>
