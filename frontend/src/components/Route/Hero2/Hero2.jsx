@@ -2,7 +2,7 @@ import React from "react";
 
 import roundele from "../../../assets/round elemnet.svg";
 import fifty from "../../../assets/Group 130.svg";
-import eq1 from "../../../assets/eq-1.svg";
+import eq1 from "../../../assets/hero2.png";
 import { Link } from "react-router-dom";
 
 const Hero = () => {

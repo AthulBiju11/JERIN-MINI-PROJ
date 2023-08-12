@@ -1,4 +1,5 @@
 import React from "react";
+import {useNavigate } from "react-router-dom";
 
 import { Col, Row } from "reactstrap";
 import { Link } from "react-router-dom";
@@ -66,6 +67,7 @@ const fut__links3 = [
 ];
 
 const Footer = () => {
+  const navigate = useNavigate();
   return (
     <>
       <section className="flex p-0 mt-10">
@@ -77,7 +79,9 @@ const Footer = () => {
                 
                 <input type="text" placeholder="Enter Email Address" required />
                 
-                <button className="btn text-white" type="submit">
+          
+            
+                <button className="btn text-white" type="submit" onClick={()=>navigate("/Signup")}>
                   Sign Up
                 </button>
                 

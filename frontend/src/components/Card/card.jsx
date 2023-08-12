@@ -44,7 +44,7 @@ const Card = ({ product }) => {
 
       <div className="h-[135px] bg-[#fff] group-hover:bg-[#682A85] p-[15px] absolute bottom-0 left-0 right-0">
         <div className="">
-          <div className="flex justify-right">
+          <div className="flex justify-center">
             
             <h5 className="TITLE mx-[22%] text-[#FB2E86] group-hover:text-[#fff] backdrop:font-[600] font-Lato">
               {title}
