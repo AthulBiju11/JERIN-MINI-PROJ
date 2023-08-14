@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectCartItems,selectCartTotal } from "../../store/cart/cart.selector";
 import { addItemToCart, removeItemFromCart,clearItemFromCart,  } from "../../store/cart/cart.reducer";
 import { removeItemFromCartWithDatabaseUpdate,addItemToCartWithDatabaseUpdate,clearItemFromCartWithDatabaseUpdate} from "../../store/cart/cart.reducer";
+import { toast } from "react-toastify";
 
 const Cart = () => {
 
@@ -30,18 +31,46 @@ const Cart = () => {
 
   const handleReduce = (product) => {
     dispatch(removeItemFromCartWithDatabaseUpdate(product));
-    
-    
-    
-     
-     
   }
 
   const handleRemove = (product) => {
     dispatch(clearItemFromCartWithDatabaseUpdate(product));
   }
 
-  return (
+  const handleCheckOut = (price) =>{
+    try {
+    const options = {
+      key: "rzp_test_vc8XY2Q34138RT",
+      key_secret: "Wg893VmTA2VegApQqTzMZS9Z",
+      amount: price*100,
+      currency: 'INR',
+      order_id: cartItems.id,
+      name: 'MechKart',
+      description: 'Mechanical Items',
+      handler: function (response) {
+        console.log('Payment successful:', response);
+        toast.success("Payment successful! Your order has been placed.");
+        navigate('/')
+      },
+      prefill: {
+      },
+      notes: {
+        address: 'Razorpay Corporate office',
+      },
+      theme: {
+        color: '#ffa500',
+      },
+    };
+    const rzp = new window.Razorpay(options);
+    rzp.open();
+  }
+  catch (error) {
+    console.error('Error during payment:', error);
+    alert('An error occurred during payment.');
+  }
+};
+
+return (
     <div className="p-5">
     <div className="w-[110px] bg-[#682A85] hover:bg-[#983ec2] h-[47px] my-[-5px] flex items-center justify-center rounded-[5px] cursor-pointer">
         
@@ -123,7 +152,7 @@ const Cart = () => {
             <h2 className="text-xl font-bold">Other Details</h2>
             {/* Add other details or components as needed */}
           </div>
-          <div className="border border-gray-300 rounded p-4 mt-4">
+          <div className="border border-gray-300 rounded p-4 mt-4 pb-10">
             <h2 className="text-xl font-bold">Summary</h2>
             <div className="flex justify-between mt-4">
               <div>Total Price:</div>
@@ -141,8 +170,12 @@ const Cart = () => {
               {cartTotal &&  
               <div>Rs.{cartTotFinal}</div>
 }
+              
             </div>
-             
+            <button
+                          className="bg-red-500 hover:bg-red-600 text-white rounded float-right p-2 mt-4"
+                          onClick={()=>handleCheckOut(cartTotFinal)}
+              >Check Out</button>
             <div className="border-t mt-4"></div>
           </div>
         </div>
