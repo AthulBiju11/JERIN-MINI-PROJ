@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Loginpage, HomePage, Products, SignupPage } from "./Routes.js";
+import { Loginpage, HomePage, Products, SignupPage, Faq } from "./Routes.js";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Admin from "./pages/AdminPage/admin.page";
@@ -60,7 +60,7 @@ const App = () => {
                 <Route path="/products" element={<Products />} />
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/user-request" element={<UserRequests />} />
-                
+                <Route path="/faq" element={<Faq />} />
                 {currentUser && (<Route path="/cart" element={<Cart />} />)}             
 
                 {currentUser?.isAdmin && (

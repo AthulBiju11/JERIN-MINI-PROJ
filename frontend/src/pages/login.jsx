@@ -5,9 +5,6 @@ const loginpage = () => {
   return (
     <div>
     <Login />
-    
-
-    
     </div>
   )
 }
