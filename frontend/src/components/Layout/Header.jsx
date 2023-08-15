@@ -113,7 +113,8 @@ const Header = () => {
                     const d = i.title;
                     const Product_name = d.replace(/\s+/g, "-");
                     return (
-                      <Link to={`/product/${Product_name}`} key={index}>
+                      // <Link to={`/product/${Product_name}`} key={index}>
+                      <Link to={`/products`}>
                         <div className="w-full flex items-start-py-3">
                           <img
                             src={i.img}

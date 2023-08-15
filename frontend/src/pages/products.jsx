@@ -22,8 +22,9 @@ const Products = () => {
       <div className="flex flex-col">
         <FeaturedProducts />
 
-        <TrendingProd />
+        
         <LatestProducts />
+        <TrendingProd />
         <Footer />
       </div>
     </>
