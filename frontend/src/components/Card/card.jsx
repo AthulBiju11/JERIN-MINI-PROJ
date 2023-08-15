@@ -55,14 +55,16 @@ const Card = ({ product }) => {
               Rs {price} <span> / per unit</span>
             </h5>
           </div>
-          <Link to="/" className="flex justify-center">
-            <div
-              className="bg-[#FB2E86] w-[70px] h-[30px] text-center mt-[15px] text-[white] sm:shadow-md"
+          <div className="flex justify-center">
+          <button>
+            <div 
+              className=" bg-[#FB2E86] w-[70px] h-[30px] text-center mt-[15px] text-[white] sm:shadow-md"
               onClick={handleAdd}
             >
               Add
             </div>
-          </Link>
+          </button>
+          </div>
         </div>
       </div>
     </div>
