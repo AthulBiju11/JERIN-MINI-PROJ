@@ -1,9 +1,9 @@
 import React, { useContext } from 'react'
-import Styles from '../../../styles/style';
-import Card from '../../Card/card';
-import { ProductsContext } from '../../../context/productContext';
+import Styles from '../../styles/style';
+import Card from '../Card/card'
+import { ProductsContext } from '../../context/productContext';
 
-const FeaturedProducts = () => {
+const Categories3 = () => {
 
   const {data} = useContext(ProductsContext);
 
@@ -15,7 +15,7 @@ const FeaturedProducts = () => {
         <div className={`${Styles.section}`}>
             <div className={`${Styles.heading} mt-[50px] flex justify-center`}>
                 <h1>
-                    Featured Products
+                    Agricultural Machinary
                 </h1>
             </div>
         </div>
@@ -25,7 +25,7 @@ const FeaturedProducts = () => {
         {/* product card */}
 <div className='flex float-left w-[100%] justify-center'>
 {data && 
-  data.filter((product) => product.attribute.featured === true).map((product,i) => {
+  data.filter((product) => product.cat  === 'am' || product.cat  === 'AM').map((product,i) => {
     
     return <Card product={product} key={i}/>
   })
@@ -34,8 +34,13 @@ const FeaturedProducts = () => {
 
 </div>
 
+
+
     </div>
+
+
+
   )
 }
 
-export default FeaturedProducts
+export default Categories3
